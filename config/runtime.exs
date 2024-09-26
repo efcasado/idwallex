@@ -10,3 +10,7 @@ import Config
 if base_url = System.get_env("IDWALLEX_BASE_URI") do
   config :idwallex, base_url: base_url
 end
+
+if api_key = System.get_env("IDWALLEX_API_KEY") do
+  config :idwallex, api_key: api_key
+end

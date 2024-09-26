@@ -8,29 +8,31 @@ defmodule Idwallex.Connection do
   Additional middleware can be set in the compile-time or runtime configuration:
 
       config :tesla, Idwallex.Connection,
-        base_url: "http://}",
+        base_url: "https://api-v3.idwall.co/maestro",
         adapter: Tesla.Adapter.Hackney
 
   The default base URL can also be set as:
 
       config :idwallex,
-        :base_url, "http://}"
+        :base_url, "https://api-v3.idwall.co/maestro"
   """
 
   @default_base_url Application.compile_env(
                       :idwallex,
                       :base_url,
-                      "http://}"
+                      "https://api-v3.idwall.co/maestro"
                     )
 
 
   @typedoc """
   The list of options that can be passed to new/1.
 
+  - `api_key`: Overrides the API key on a per-client basis.
   - `base_url`: Overrides the base URL on a per-client basis.
   - `user_agent`: Overrides the User-Agent header.
   """
   @type options :: [
+          {:api_key, String.t()},
           {:base_url, String.t()},
           {:user_agent, String.t()},
         ]
@@ -100,11 +102,16 @@ defmodule Idwallex.Connection do
         )
       )
 
-
+    api_key =
+      Keyword.get(
+        options,
+        :api_key,
+        Application.get_env(:opsgeniex, :api_key, nil)
+      )
 
     [
       {Tesla.Middleware.BaseUrl, base_url},
-      {Tesla.Middleware.Headers, [{"user-agent", user_agent}]},
+      {Tesla.Middleware.Headers, [{"user-agent", user_agent}, {"authorization", api_key}]},
       {Tesla.Middleware.EncodeJson, engine: json_engine}
       | middleware
     ]

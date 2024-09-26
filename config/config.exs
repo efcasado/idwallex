@@ -7,7 +7,8 @@
 # General application configuration
 import Config
 
-config :idwallex, base_url: "http://}"
+config :idwallex, base_url: "https://api-v3.idwall.co/maestro"
+config :idwallex, api_key: "<your-secret-api-key>"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
