@@ -1,0 +1,2376 @@
+openapi: 3.0.0
+info:
+  title: Plataforma idwall Copy
+  version: 1.0.0
+servers:
+  - url: http://{{host}}
+  - url: http://{{uploaduri}}
+tags:
+  - name: Profiles
+  - name: Images
+  - name: Flows
+  - name: Segments
+  - name: Review pendencies
+paths:
+  /{prefix}/profile:
+    post:
+      tags:
+        - Profiles
+      summary: Create profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                ref: profile-reference-id
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '406':
+          description: Not Acceptable
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  message: Profile validation error
+                  errors:
+                    - ref is a required field
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create Complete Profile
+                  value:
+                    data:
+                      created: profile-reference-id
+                example-1:
+                  summary: Create Profile with OCR
+                  value:
+                    data:
+                      created: profile-reference-id
+  /{prefix}/profile/sdk:
+    post:
+      tags:
+        - Profiles
+      summary: Create profile with SDK key
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"sdkToken\": \"sdk-xxxxxx-xxxxxxx-xxxxxx-xxxxxx\",\n   
+                \"ref\": \"profile-reference-id\"\n}"
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '406':
+          description: Not Acceptable
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  message: Profile validation error
+                  errors:
+                    - ref is a required field
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  created: profile-reference-id
+  /{prefix}/profile/{ref}:
+    get:
+      tags:
+        - Profiles
+      summary: Profile
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: ref
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 19:36:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '4'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  contact:
+                    phoneNumber: ''
+                    emailAddress: ''
+                  identity:
+                    biometric:
+                      face:
+                        imagesUrls: []
+                    documents:
+                      rg:
+                        ufEmissao: null
+                        orgaoExpedidor: null
+                        numeroCpf: null
+                        docOrigem: null
+                        dataNascimento: null
+                        naturalidade: null
+                        filiacao:
+                          nomeMae: null
+                          nomePai: null
+                        dataExpedicao: null
+                        numeroRg: null
+                        nome: null
+                        imagesUrls: []
+                      cnh:
+                        observacao: null
+                        numeroEspelho: null
+                        numeroSeguranca: null
+                        numeroRenach: null
+                        dataEmissao: null
+                        estadoEmissao: null
+                        cidadeEmissao: null
+                        primeiraHabilitacao: null
+                        validade: null
+                        numeroRegistro: null
+                        categoria: null
+                        acc: null
+                        permissao: null
+                        filiacao:
+                          nomeMae: null
+                          nomePai: null
+                        dataNascimento: null
+                        numeroCpf: null
+                        orgaoExpedidorRg: null
+                        numeroRg: null
+                        nome: null
+                        imagesUrls: []
+                  personal:
+                    birthDate: null
+                    name: null
+                  keys:
+                    cpfNumber: null
+                  status: 1
+                  ref: REFERENCIA
+                  createdAt: '2020-01-06T18:14:51.838Z'
+                  updatedAt: '2020-01-06T18:14:51.838Z'
+                  createdBy:
+                    company:
+                      name: Company name
+                      slug: company-slug
+                      id: company-uuid
+                    user:
+                      name: John
+                      email: john@idwall.com
+                      id: user-uuid
+                  flows:
+                    finished:
+                      names:
+                        - OnBoarding
+                      total: 1
+                    lastAt: '2020-01-06T18:14:51.838Z'
+                    total: 5
+        '404':
+          description: Not Found
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 20:33:33 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '3'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Profile not found
+    put:
+      tags:
+        - Profiles
+      summary: Update profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                personal:
+                  name: '{{$randomFullName}}'
+                  cpfNumber: 000.000.00-00
+                  birthDate: '1991-12-09T00:00:00-02:00'
+                status: 1
+                affiliations:
+                  mother:
+                    name: '{{$randomFullName}}'
+                  father:
+                    name: '{{$randomFullName}}'
+                identity:
+                  documents:
+                    rg:
+                      nome: '{{$randomFullName}}'
+                      numeroRg: 00.000.000-0
+                      dataExpedicao: '1991-12-09T00:00:00-02:00'
+                      orgaoExpedidor: SSP
+                      numeroCpf: ''
+                      naturalidade: São Paulo
+                      dataNascimento: '1991-12-09T00:00:00-02:00'
+                      docOrigem: São Paulo
+                      ufEmissao: SP
+                      filiacao:
+                        nomeMae: '{{$randomFullName}}'
+                        nomePai: '{{$randomFullName}}'
+                    cnh:
+                      nome: '{{$randomFullName}}'
+                      numeroRg: 00.000.000-0
+                      orgaoExpedidorRg: SSP
+                      estadoEmissao: SP
+                      numeroCpf: 000.000.000-00
+                      dataNascimento: '1991-12-09T00:00:00-02:00'
+                      filiacao:
+                        nomeMae: '{{$randomFullName}}'
+                        nomePai: '{{$randomFullName}}'
+                      categoria: A - B
+                      numeroRegistro: '00123456789'
+                      validade: '2025-12-09T00:00:00-03:00'
+                      primeiraHabilitacao: '2012-12-09T00:00:00-02:00'
+                      dataEmissao: '2012-12-09T00:00:00-02:00'
+                      cidadeEmissao: São Paulo
+                      numeroRenach: SP00000000
+                      numeroEspelho: '00000'
+                      observacao: CNH completa
+                contacts:
+                  email:
+                    - emailAddress: '{{$randomEmail}}'
+                      isMain: true
+                    - emailAddress: '{{$randomEmail}}'
+                      isMain: false
+                  phone:
+                    - type: mobile
+                      ddd: '11'
+                      number: 0000-0000
+                      isMain: true
+                    - type: landline
+                      ddd: '11'
+                      number: 0000-0000
+                      isMain: false
+                addresses:
+                  - zipCode: 00000-000
+                    street: '{{$randomStreetAddress}}'
+                    detail: ''
+                    neighborhood: neighborhood
+                    city: São Paulo
+                    state: SP
+                    isMain: false
+                    type: 1
+                  - zipCode: 00000-000
+                    street: '{{$randomStreetAddress}}'
+                    detail: ''
+                    neighborhood: neighborhood
+                    city: São Paulo
+                    state: SP
+                    isMain: true
+                    type: 1
+                others:
+                  sex: men
+                  maritalStatus: married
+                images:
+                  - imageToken: idwall://files/temp/some-cnh-image-uri
+                    ocrType: NONE
+                    category: CNH
+                    documentSide: FULL
+                  - imageToken: idwall://files/temp/some-face-image-uri
+                    ocrType: NONE
+                    category: FACE
+                  - imageToken: idwall://files/temp/some-unknown-image-uri
+                    ocrType: NONE
+                    category: UNKNOWN
+                segments:
+                  - first-segment-id
+                  - another-segment-id
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: ref
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 19:36:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '4'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  modified: profile-reference-id
+        '406':
+          description: Not Acceptable
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  message: Profile validation error
+                  errors:
+                    - ref is a required field
+  /{prefix}/profile/search:
+    post:
+      tags:
+        - Profiles
+      summary: List profiles
+      description: >-
+        ## Headers
+
+        - `Authorization` **[required]**: Token recebido na request
+        **Autenticação > Obtendo um token de acesso**.
+
+        - `Content-Type`: Deve ser sempre `application/json`.
+
+
+        ## Params
+
+
+        - `q`: Parâmetro de busca por nome e cpf no perfil. 
+
+        - `status`: Situação atual do perfil. 
+            1 = ativo / 0 = inativo
+        - `limit`: Quantidade de itens por página.
+
+        - `page`: Página atual.
+
+
+        ## Resposta
+
+        - HTTP **200 OK**
+
+        - Body de resposta em JSON.
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Autenticação v2 ( Backoffice UUID Token )
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                {
+                    "data": [
+                        {
+                            "contact": {
+                                "phoneNumber": "",
+                                "emailAddress": ""
+                            },
+                            "identity": {
+                                "biometric": {
+                                    "face": {
+                                        "imagesUrls": []
+                                    }
+                                },
+                                "documents": {
+                                    "rg": {
+                                        "ufEmissao": null,
+                                        "orgaoExpedidor": null,
+                                        "numeroCpf": null,
+                                        "docOrigem": null,
+                                        "dataNascimento": null,
+                                        "naturalidade": null,
+                                        "filiacao": {
+                                            "nomeMae": null,
+                                            "nomePai": null
+                                        },
+                                        "dataExpedicao": null,
+                                        "numeroRg": null,
+                                        "nome": null,
+                                        "imagesUrls": []
+                                    },
+                                    "cnh": {
+                                        "observacao": null,
+                                        "numeroEspelho": null,
+                                        "numeroSeguranca": null,
+                                        "numeroRenach": null,
+                                        "dataEmissao": null,
+                                        "estadoEmissao": null,
+                                        "cidadeEmissao": null,
+                                        "primeiraHabilitacao": null,
+                                        "validade": null,
+                                        "numeroRegistro": null,
+                                        "categoria": null,
+                                        "acc": null,
+                                        "permissao": null,
+                                        "filiacao": {
+                                            "nomeMae": null,
+                                            "nomePai": null
+                                        },
+                                        "dataNascimento": null,
+                                        "numeroCpf": null,
+                                        "orgaoExpedidorRg": null,
+                                        "numeroRg": null,
+                                        "nome": null,
+                                        "imagesUrls": []
+                                    }
+                                }
+                            },
+                            "personal": {
+                                "birthDate": null,
+                                "name": null
+                            },
+                            "status": 1,
+                            "ref": "REFERENCIA",
+                            "createdAt": "2020-01-06T18:14:51.838Z",
+                            "updatedAt": "2020-01-06T18:14:51.838Z",
+                            "createdBy": {
+                                "company": {
+                                    "name": "Company name",
+                                    "slug": "company-slug",
+                                    "id": "company-uuid"
+                                },
+                                "user": {
+                                    "name": "John",
+                                    "email": "john@idwall.com",
+                                    "id": "user-uuid"
+                                }
+                            }
+                        }
+                    ],
+                    "pagination": {
+                        "limit": 10,
+                        "page": 1,
+                        "total": 1,
+                        "pages": 1
+                    }
+                }
+  /{prefix}/profile/{ref}/sdk:
+    put:
+      tags:
+        - Profiles
+      summary: Update profile with SDK key
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: ref
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '406':
+          description: Not Acceptable
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  message: Profile validation error
+                  errors:
+                    - ref is a required field
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  created: profile-reference-id
+  /{prefix}/profile/{profileRef}/flow/{flowId}:
+    post:
+      tags:
+        - Profiles
+      summary: Start flow
+      requestBody:
+        content: {}
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: profileRef
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: flowId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 19:36:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '4'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  created: true
+  /{prefix}/profile/{ref}/profileFlows:
+    get:
+      tags:
+        - Profiles
+      summary: Profile flows
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: ref
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 19:36:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '4'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: d6f8b981-370d-45dd-9369-725fc8cb22ec
+                    createdAt: '2022-04-08T20:32:54.541Z'
+                    stages:
+                      - stageId: stage-id
+                        status: FINISHED
+                        issuer: issuer
+                        type: BGC
+                        params:
+                          setting: setting-name
+                          inputsMapping:
+                            - here:
+                                - birthDate
+                                - identity.documents.cnh.dataNascimento
+                                - identity.documents.rg.dataNascimento
+                                - personal.birthDate
+                              there:
+                                input: person.birthDate
+                                inputLegacy: cpf_data_de_nascimento
+                                options:
+                                  - person.birthDate
+                                  - PERSON_BIRTH_DATE
+                                  - cpf_data_de_nascimento
+                            - here:
+                                - name
+                                - identity.documents.cnh.nome
+                                - identity.documents.rg.nome
+                                - personal.name
+                              there:
+                                input: person.name
+                                inputLegacy: cpf_nome
+                                options:
+                                  - person.name
+                                  - PERSON_NAME
+                                  - cpf_nome
+                            - here:
+                                - cpfNumber
+                                - identity.documents.cnh.numeroCpf
+                                - identity.documents.rg.numeroCpf
+                                - personal.cpfNumber
+                              there:
+                                input: person.document.cpf.numero
+                                inputLegacy: cpf_numero
+                                options:
+                                  - person.document.cpf.numero
+                                  - PERSON_CPF_NUMBER
+                                  - cpf_numero
+                        conditions:
+                          - birthDate
+                          - name
+                          - cpfNumber
+                        updatedAt: '2022-04-08T20:33:20.692Z'
+                        ref: reference-id
+                        usedFields:
+                          - field: personal.birthDate
+                            value: '1992-07-03T00:00:00-03:00'
+                            there: cpf_data_de_nascimento
+                          - field: personal.name
+                            value: Thays dos Santos Neves
+                            there: cpf_nome
+                          - field: personal.cpfNumber
+                            value: '11664749764'
+                            there: cpf_numero
+                        response:
+                          entity:
+                            name: person name
+                            document: 000.000.000-00
+                          report:
+                            numero: report-id
+                            status: CONCLUIDO
+                            nome: setting-name
+                            mensagem: Válido.
+                            resultado: VALID
+                            validado_em: '2022-04-08T20:32:55.273Z'
+                            validado_por: null
+                            validado_manualmente: false
+                            atualizado_em: '2022-04-08T20:33:20.314Z'
+                            criado_em: '2022-04-08T20:32:54.805Z'
+                            criado_por: john@emai.co
+                            numero_pai: null
+                            descricao: description
+                            titulo: title
+                            flag: []
+                          sections:
+                            - section: cpf
+                              checks:
+                                - regra: idwall.matrix.regras.cpf.RegraDataNascimento
+                                  nome: Data de Nascimento na Receita Federal
+                                  descricao: >-
+                                    Data de Nascimento deve ser igual ao
+                                    cadastrado na Receita Federal
+                                  resultado: VALID
+                                - regra: >-
+                                    idwall.matrix.regras.cpf.RegraFuzzyNomeReceitaFederal
+                                  nome: Nome na Receita Federal (Por semelhança)
+                                  descricao: >-
+                                    Nome deve ser similar ao cadastrado na
+                                    Receita Federal
+                                  resultado: VALID
+                                - regra: idwall.matrix.regras.cpf.RegraObito
+                                  nome: Registro de óbito na Receita Federal
+                                  descricao: >-
+                                    Não deve constar registro de óbito na
+                                    Receita Federal
+                                  resultado: VALID
+                                - regra: >-
+                                    idwall.matrix.regras.cpf.RegraSituacaoReceitaFederal
+                                  nome: Situação Cadastral Regular
+                                  descricao: Situação cadastral do CPF deve ser REGULAR
+                                  resultado: VALID
+                              status: VALID
+                            - section: parametros
+                              checks: []
+                          data:
+                            atualizado_em: '2022-04-08T20:33:20.314Z'
+                            criado_em: '2022-04-08T20:32:54.805Z'
+                            mensagem: Válido.
+                            nome: setting-name
+                            numero: report-id
+                            resultado: VALID
+                            status: CONCLUIDO
+                            validado_em: '2022-04-08T20:32:55.273Z'
+                            validado_manualmente: false
+                            cpf:
+                              numero: 000.000.000-00
+                              nome: person name
+                              data_de_nascimento: 00/00/0000
+                              cpf_situacao_cadastral: REGULAR
+                              cpf_data_de_inscricao: 00/00/0000
+                              cpf_digito_verificador: '00'
+                              cpf_anterior_1990: 'N'
+                              ano_obito: ''
+                              nome_social: ''
+                              similaridade: 1
+                              grafias:
+                                - ''
+                          parameters:
+                            cpf: '00000000000'
+                            data_de_nascimento: 00/00/0000
+                            nome: person name
+                            parametros_auxiliares:
+                              - tipo: CPF_NOME
+                                fonte: CPF Receita Federal
+                                valor: person name
+                          queries:
+                            - nome: CPF Receita Federal
+                              idConsulta: '00000000'
+                              status_fonte: OK
+                              tentativas:
+                                - duracao_tentativa: 21988
+                                  hora_fim_tentativa: '2022-04-08T20:33:18.923Z'
+                                  hora_inicio_tentativa: '2022-04-08T20:32:56.935Z'
+                                  msg_erro_tentativa: null
+                                  nome_fonte: CPF Receita Federal
+                                  status_fonte: OK
+                                  status_tentativa: SUCCESS
+                                  tipo_erro_tentativa: null
+                          validation:
+                            - regra: idwall.matrix.regras.cpf.RegraDataNascimento
+                              nome: Data de Nascimento na Receita Federal
+                              descricao: >-
+                                Data de Nascimento deve ser igual ao cadastrado
+                                na Receita Federal
+                              resultado: VALID
+                            - regra: >-
+                                idwall.matrix.regras.cpf.RegraFuzzyNomeReceitaFederal
+                              nome: Nome na Receita Federal (Por semelhança)
+                              descricao: >-
+                                Nome deve ser similar ao cadastrado na Receita
+                                Federal
+                              resultado: VALID
+                            - regra: idwall.matrix.regras.cpf.RegraObito
+                              nome: Registro de óbito na Receita Federal
+                              descricao: >-
+                                Não deve constar registro de óbito na Receita
+                                Federal
+                              resultado: VALID
+                            - regra: >-
+                                idwall.matrix.regras.cpf.RegraSituacaoReceitaFederal
+                              nome: Situação Cadastral Regular
+                              descricao: Situação cadastral do CPF deve ser REGULAR
+                              resultado: VALID
+                      - stageId: stage-uuid
+                        status: FINISHED
+                        issuer: issuer
+                        type: WEBHOOK
+                        params:
+                          urls:
+                            - http://reprovado.com
+                        conditions: []
+                        updatedAt: '2022-04-08T20:33:20.783Z'
+                    status: FINISHED
+                    input:
+                      profileRef: profile-reference-id
+                      flowId: flow-id
+                      triggerType: MANUAL
+                    triggerType: MANUAL
+                    nextStage: next-stage-id
+                    profileRef: profile-reference-id
+                    flowName: flow name
+                    flowId: flow-uuid
+                    updatedAt: '2022-04-08T20:33:20.790Z'
+                    createdBy:
+                      company:
+                        id: '000'
+                        name: company name
+                        slug: company_slug
+                      user:
+                        id: '00'
+                        email: jonh-doe@email.co
+                        name: john doe
+                pagination:
+                  limit: 10
+                  page: 1
+                  total: 1
+                  pages: 1
+        '404':
+          description: Not Found
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 20:33:33 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '3'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Profile not found
+  /{prefix}/profile/{ref}/lastProfileFlow:
+    get:
+      tags:
+        - Profiles
+      summary: Last profile flow
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: ref
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 19:36:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '4'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: d6f8b981-370d-45dd-9369-725fc8cb22ec
+                  createdAt: '2022-04-08T20:32:54.541Z'
+                  stages:
+                    - stageId: stage-id
+                      status: FINISHED
+                      issuer: issuer
+                      type: BGC
+                      params:
+                        setting: setting-name
+                        inputsMapping:
+                          - here:
+                              - birthDate
+                              - identity.documents.cnh.dataNascimento
+                              - identity.documents.rg.dataNascimento
+                              - personal.birthDate
+                            there:
+                              input: person.birthDate
+                              inputLegacy: cpf_data_de_nascimento
+                              options:
+                                - person.birthDate
+                                - PERSON_BIRTH_DATE
+                                - cpf_data_de_nascimento
+                          - here:
+                              - name
+                              - identity.documents.cnh.nome
+                              - identity.documents.rg.nome
+                              - personal.name
+                            there:
+                              input: person.name
+                              inputLegacy: cpf_nome
+                              options:
+                                - person.name
+                                - PERSON_NAME
+                                - cpf_nome
+                          - here:
+                              - cpfNumber
+                              - identity.documents.cnh.numeroCpf
+                              - identity.documents.rg.numeroCpf
+                              - personal.cpfNumber
+                            there:
+                              input: person.document.cpf.numero
+                              inputLegacy: cpf_numero
+                              options:
+                                - person.document.cpf.numero
+                                - PERSON_CPF_NUMBER
+                                - cpf_numero
+                      conditions:
+                        - birthDate
+                        - name
+                        - cpfNumber
+                      updatedAt: '2022-04-08T20:33:20.692Z'
+                      ref: reference-id
+                      usedFields:
+                        - field: personal.birthDate
+                          value: '1992-07-03T00:00:00-03:00'
+                          there: cpf_data_de_nascimento
+                        - field: personal.name
+                          value: Thays dos Santos Neves
+                          there: cpf_nome
+                        - field: personal.cpfNumber
+                          value: '11664749764'
+                          there: cpf_numero
+                      response:
+                        entity:
+                          name: person name
+                          document: 000.000.000-00
+                        report:
+                          numero: report-id
+                          status: CONCLUIDO
+                          nome: setting-name
+                          mensagem: Válido.
+                          resultado: VALID
+                          validado_em: '2022-04-08T20:32:55.273Z'
+                          validado_por: null
+                          validado_manualmente: false
+                          atualizado_em: '2022-04-08T20:33:20.314Z'
+                          criado_em: '2022-04-08T20:32:54.805Z'
+                          criado_por: john@emai.co
+                          numero_pai: null
+                          descricao: description
+                          titulo: title
+                          flag: []
+                        sections:
+                          - section: cpf
+                            checks:
+                              - regra: idwall.matrix.regras.cpf.RegraDataNascimento
+                                nome: Data de Nascimento na Receita Federal
+                                descricao: >-
+                                  Data de Nascimento deve ser igual ao
+                                  cadastrado na Receita Federal
+                                resultado: VALID
+                              - regra: >-
+                                  idwall.matrix.regras.cpf.RegraFuzzyNomeReceitaFederal
+                                nome: Nome na Receita Federal (Por semelhança)
+                                descricao: >-
+                                  Nome deve ser similar ao cadastrado na Receita
+                                  Federal
+                                resultado: VALID
+                              - regra: idwall.matrix.regras.cpf.RegraObito
+                                nome: Registro de óbito na Receita Federal
+                                descricao: >-
+                                  Não deve constar registro de óbito na Receita
+                                  Federal
+                                resultado: VALID
+                              - regra: >-
+                                  idwall.matrix.regras.cpf.RegraSituacaoReceitaFederal
+                                nome: Situação Cadastral Regular
+                                descricao: Situação cadastral do CPF deve ser REGULAR
+                                resultado: VALID
+                            status: VALID
+                          - section: parametros
+                            checks: []
+                        data:
+                          atualizado_em: '2022-04-08T20:33:20.314Z'
+                          criado_em: '2022-04-08T20:32:54.805Z'
+                          mensagem: Válido.
+                          nome: setting-name
+                          numero: report-id
+                          resultado: VALID
+                          status: CONCLUIDO
+                          validado_em: '2022-04-08T20:32:55.273Z'
+                          validado_manualmente: false
+                          cpf:
+                            numero: 000.000.000-00
+                            nome: person name
+                            data_de_nascimento: 00/00/0000
+                            cpf_situacao_cadastral: REGULAR
+                            cpf_data_de_inscricao: 00/00/0000
+                            cpf_digito_verificador: '00'
+                            cpf_anterior_1990: 'N'
+                            ano_obito: ''
+                            nome_social: ''
+                            similaridade: 1
+                            grafias:
+                              - ''
+                        parameters:
+                          cpf: '00000000000'
+                          data_de_nascimento: 00/00/0000
+                          nome: person name
+                          parametros_auxiliares:
+                            - tipo: CPF_NOME
+                              fonte: CPF Receita Federal
+                              valor: person name
+                        queries:
+                          - nome: CPF Receita Federal
+                            idConsulta: '00000000'
+                            status_fonte: OK
+                            tentativas:
+                              - duracao_tentativa: 21988
+                                hora_fim_tentativa: '2022-04-08T20:33:18.923Z'
+                                hora_inicio_tentativa: '2022-04-08T20:32:56.935Z'
+                                msg_erro_tentativa: null
+                                nome_fonte: CPF Receita Federal
+                                status_fonte: OK
+                                status_tentativa: SUCCESS
+                                tipo_erro_tentativa: null
+                        validation:
+                          - regra: idwall.matrix.regras.cpf.RegraDataNascimento
+                            nome: Data de Nascimento na Receita Federal
+                            descricao: >-
+                              Data de Nascimento deve ser igual ao cadastrado na
+                              Receita Federal
+                            resultado: VALID
+                          - regra: >-
+                              idwall.matrix.regras.cpf.RegraFuzzyNomeReceitaFederal
+                            nome: Nome na Receita Federal (Por semelhança)
+                            descricao: >-
+                              Nome deve ser similar ao cadastrado na Receita
+                              Federal
+                            resultado: VALID
+                          - regra: idwall.matrix.regras.cpf.RegraObito
+                            nome: Registro de óbito na Receita Federal
+                            descricao: >-
+                              Não deve constar registro de óbito na Receita
+                              Federal
+                            resultado: VALID
+                          - regra: >-
+                              idwall.matrix.regras.cpf.RegraSituacaoReceitaFederal
+                            nome: Situação Cadastral Regular
+                            descricao: Situação cadastral do CPF deve ser REGULAR
+                            resultado: VALID
+                    - stageId: stage-uuid
+                      status: FINISHED
+                      issuer: issuer
+                      type: WEBHOOK
+                      params:
+                        urls:
+                          - http://reprovado.com
+                      conditions: []
+                      updatedAt: '2022-04-08T20:33:20.783Z'
+                  status: FINISHED
+                  input:
+                    profileRef: profile-reference-id
+                    flowId: flow-id
+                    triggerType: MANUAL
+                  triggerType: MANUAL
+                  nextStage: next-stage-id
+                  profileRef: profile-reference-id
+                  flowName: flow name
+                  flowId: flow-uuid
+                  updatedAt: '2022-04-08T20:33:20.790Z'
+                  createdBy:
+                    company:
+                      id: '000'
+                      name: company name
+                      slug: company_slug
+                    user:
+                      id: '00'
+                      email: jonh-doe@email.co
+                      name: john doe
+        '404':
+          description: Not Found
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 20:33:33 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '3'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Profile not found
+  /{prefix}/profile-enrichment/by-profile-ref/{ref}:
+    get:
+      tags:
+        - Profiles
+      summary: Enriched information (ref)
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: ref
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{prefix}/profile-enrichment/{id}:
+    get:
+      tags:
+        - Profiles
+      summary: Enriched information (id)
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /uploadUrl:
+    get:
+      tags:
+        - Images
+      summary: Get signed URL
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: contentType
+          in: query
+          schema:
+            type: string
+          example: image/jpeg
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /:
+    put:
+      tags:
+        - Images
+      summary: Image Upload
+      requestBody:
+        content:
+          text/plain: {}
+      responses:
+        '200':
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: ''
+  /files/{id}:
+    get:
+      tags:
+        - Images
+      summary: Download image
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{prefix}/flow/{id}:
+    get:
+      tags:
+        - Flows
+      summary: Flow
+      description: >-
+        ## Headers
+
+        - `Authorization` **[required]**: Token recebido na request
+        **Autenticação > Obtendo um token de acesso**.
+
+        - `Content-Type`: Deve ser sempre `application/json`.
+
+
+        ## Resposta
+
+        - HTTP **200 OK**
+
+        - Body de resposta em JSON.
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Autenticação v2 ( Backoffice UUID Token )
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: '{{flow-id}}'
+      responses:
+        '401':
+          description: Unauthorized
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 19:36:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '4'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: flow-uuid
+                archived: false
+                trigger:
+                  type: MANUAL
+                  filters: []
+                  segmentIds: []
+                description: ''
+                status: 0
+                name: flow name
+                stages:
+                  - id: stage-uuid
+                    isFirst: true
+                    nextStageWhenIsInvalid: next-stage-id
+                    type: BGC
+                    params:
+                      setting: onboarding
+                      inputsMapping:
+                        - here:
+                            - cpfNumber
+                            - identity.documents.cnh.numeroCpf
+                            - identity.documents.rg.numeroCpf
+                            - personal.cpfNumber
+                          there:
+                            input: person.document.cpf.numero
+                            inputLegacy: cpf_numero
+                            options:
+                              - person.document.cpf.numero
+                              - PERSON_CPF_NUMBER
+                              - cpf_numero
+                        - here:
+                            - name
+                            - identity.documents.cnh.nome
+                            - identity.documents.rg.nome
+                            - personal.name
+                          there:
+                            input: person.name
+                            inputLegacy: cpf_nome
+                            options:
+                              - person.name
+                              - PERSON_NAME
+                              - cpf_nome
+                    conditions:
+                      - cpfNumber
+                      - name
+                  - id: 6c949adc-ce1b-4e45-bf77-6e4dcee10629
+                    isFirst: false
+                    type: ADD_SEGMENT
+                    params:
+                      segments:
+                        - segment-id
+                    conditions: []
+                createdAt: '2022-06-14T13:47:52.757Z'
+                updatedAt: '2022-07-05T18:41:44.456Z'
+                createdBy:
+                  company:
+                    id: '000'
+                    name: company name
+                    slug: company_slug
+                  user:
+                    id: '00'
+                    email: jonh-doe@email.co
+                    name: john doe
+                quantities:
+                  CANCELLED: 1
+                  WAITING_MANUAL_ACTION: 106
+        '404':
+          description: Not Found
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 20:33:33 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '3'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Flow not found
+  /{prefix}/flow:
+    get:
+      tags:
+        - Flows
+      summary: List flows
+      description: >-
+        ## Headers
+
+        - `Authorization` **[required]**: Token recebido na request
+        **Autenticação > Obtendo um token de acesso**.
+
+        - `Content-Type`: Deve ser sempre `application/json`.
+
+
+        ## Params
+
+
+        - `q`:  Parâmetro de busca por nome do fluxo. 
+
+        - `limit`: Quantidade de itens por página.
+
+        - `page`: Página atual.
+
+
+        ## Resposta
+
+        - HTTP **200 OK**
+
+        - Body de resposta em JSON.
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Autenticação v2 ( Backoffice UUID Token )
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 19:36:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '4'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: flow-uuid
+                    stages:
+                      - id: stage-uuid
+                        isFirst: true
+                        nextStage: notificationSuccess
+                        nextStageWhenFail: notificationError
+                        type: BGC
+                        params:
+                          setting: idhub-onboarding-passageiro
+                          inputs:
+                            - to: person.name
+                              from: personal.name
+                            - to: person.document.cpf.numero
+                              from: keys.cpfNumber
+                            - to: person.document.rg.numero
+                              from: identity.documents.rg.numeroRg
+                            - to: person.birthDate
+                              from: personal.birthDate
+                        conditions:
+                          - personal.name
+                          - keys.cpfNumber
+                          - identity.documents.rg.numeroRg
+                          - personal.birthDate
+                      - id: notificationSuccess
+                        isFirst: false
+                        nextStage: null
+                        nextStageWhenFail: null
+                        type: EMAIL
+                        params:
+                          to: john@idwall.co
+                        conditions: []
+                      - id: notificationError
+                        isFirst: false
+                        nextStage: null
+                        nextStageWhenFail: null
+                        type: EMAIL
+                        params:
+                          to: john@idwall.co
+                        conditions: []
+                    trigger:
+                      type: INPUT
+                      config: null
+                    description: Onboarding de motoristas
+                    name: Onboarding
+                    createdAt: '2020-07-06T18:14:30.894Z'
+                    updatedAt: '2020-07-06T18:14:30.894Z'
+                    createdBy:
+                      company:
+                        name: Company name
+                        slug: company-slug
+                        id: company-uuid
+                      user:
+                        name: John
+                        email: john@idwall.com
+                        id: user-uuid
+                pagination:
+                  limit: 10
+                  page: 1
+                  total: 1
+                  pages: 1
+  /{prefix}/flow/with-conditions:
+    get:
+      tags:
+        - Flows
+      summary: List flows with conditions
+      description: >-
+        ## Headers
+
+        - `Authorization` **[required]**: Token recebido na request
+        **Autenticação > Obtendo um token de acesso**.
+
+        - `Content-Type`: Deve ser sempre `application/json`.
+
+
+        ## Params
+
+
+        - `q`:  Parâmetro de busca por nome do fluxo. 
+
+        - `limit`: Quantidade de itens por página.
+
+        - `page`: Página atual.
+
+
+        ## Resposta
+
+        - HTTP **200 OK**
+
+        - Body de resposta em JSON.
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Autenticação v2 ( Backoffice UUID Token )
+          example: '{{token}}'
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '{{flow-id}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{prefix}/segment:
+    post:
+      tags:
+        - Segments
+      summary: Create segment
+      description: >-
+        ## Headers
+
+        - `Authorization` **[obrigatório]**: Token recebido na request
+        **Autenticação > Obtendo um token de acesso**.
+
+        - `Content-Type`: Deve ser sempre `application/json`.
+
+
+        ## Body
+
+
+        - `name` **[obrigatório]**
+
+        - `description` **[obrigatório]** 
+
+
+
+        ## Resposta
+
+        - HTTP **201 OK**
+
+        - Body de resposta em JSON.
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\n  \"name\": \"segment name\"\n}"'
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Autenticação v2 ( Backoffice UUID Token )
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 19:36:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '4'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  created: 408c51f3-dd7a-4329-9b95-06dfd3736ee8
+        '406':
+          description: Not Acceptable
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  message: Segment validation error
+                  errors:
+                    - name is a required field
+    get:
+      tags:
+        - Segments
+      summary: List segments
+      description: >-
+        ## Headers
+
+        - `Authorization` **[required]**: Token recebido na request
+        **Autenticação > Obtendo um token de acesso**.
+
+        - `Content-Type`: Deve ser sempre `application/json`.
+
+
+        ## Params
+
+
+        - `q`:  Parâmetro de busca por nome do fluxo. 
+
+        - `limit`: Quantidade de itens por página.
+
+        - `page`: Página atual.
+
+
+        ## Resposta
+
+        - HTTP **200 OK**
+
+        - Body de resposta em JSON.
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Autenticação v2 ( Backoffice UUID Token )
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 19:36:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '4'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: segment-uuid
+                    name: segment name
+                    description: segment description
+                    createdAt: '2022-04-20T18:02:50.279Z'
+                    updatedAt: '2022-04-20T18:02:50.279Z'
+                    createdBy:
+                      company:
+                        id: '000'
+                        name: company name
+                        slug: company_slug
+                      user:
+                        id: '00'
+                        email: jonh-doe@email.co
+                        name: john doe
+  /{prefix}/segment/{id}:
+    get:
+      tags:
+        - Segments
+      summary: Segment
+      description: >-
+        ## Headers
+
+        - `Authorization` **[required]**: Token recebido na request
+        **Autenticação > Obtendo um token de acesso**.
+
+        - `Content-Type`: Deve ser sempre `application/json`.
+
+
+        ## Params
+
+
+        - `q`:  Parâmetro de busca por nome do fluxo. 
+
+        - `limit`: Quantidade de itens por página.
+
+        - `page`: Página atual.
+
+
+        ## Resposta
+
+        - HTTP **200 OK**
+
+        - Body de resposta em JSON.
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Autenticação v2 ( Backoffice UUID Token )
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 19:36:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '4'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  id: segment-uuid
+                  name: segment name
+                  description: segment description
+                  createdAt: '2022-04-20T18:02:50.279Z'
+                  updatedAt: '2022-04-20T18:02:50.279Z'
+                  createdBy:
+                    company:
+                      id: '000'
+                      name: company name
+                      slug: company_slug
+                    user:
+                      id: '00'
+                      email: jonh-doe@email.co
+                      name: john doe
+        '404':
+          description: Not Found
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 20:33:33 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '3'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Segment not found
+  /{prefix}/review/v1/{ref}/{pendencySourceId}/{action}:
+    put:
+      tags:
+        - Review pendencies
+      summary: Retry
+      description: >-
+        ## Headers
+
+        - `Authorization` **[required]**: Token recebido na request
+        **Autenticação > Obtendo um token de acesso**.
+
+        - `Content-Type`: Deve ser sempre `application/json`.
+
+
+        ## Resposta
+
+        - HTTP **200 OK**
+
+        - Body de resposta em JSON.
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n    \"sdkToken\": \"id\",\n    \"personal\": {\n       
+                \"name\": \"Name\",\n        \"birthDate\": \"BirthDate\"\n   
+                }\n}"
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          description: Autenticação API Idwall
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: ref
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: pendencySourceId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: ID da origem da pendência (profileFlowId ou profileExtractionId)
+        - name: action
+          in: path
+          schema:
+            type: string
+          required: true
+          description: Pode ser enviado o valor RETRY
+          example: RETRY
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 Jul 2020 19:36:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Kong-Response-Latency:
+              schema:
+                type: integer
+                example: '4'
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: max-age=15724800; includeSubDomains
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  modified: 408c51f3-dd7a-4329-9b95-06dfd3736ee8
+        '406':
+          description: Not Acceptable
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error:
+                  message: Flow validation error
+                  errors:
+                    - name is a required field
+  /{prefix}/review/dataMatch/{dataMatchId}/ignore:
+    put:
+      tags:
+        - Review pendencies
+      summary: Keep CPF provided by user (Data Match)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                ref: profile-ref
+                note: optional observation
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: dataMatchId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{prefix}/review/dataMatch/{dataMatchId}/accept:
+    put:
+      tags:
+        - Review pendencies
+      summary: Keep CPF provided by OCR (Data Match)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                ref: profile-ref
+                note: optional observation
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: dataMatchId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /{prefix}/review/dataMatch/{dataMatchId}/ignore-and-inactivate-profile:
+    put:
+      tags:
+        - Review pendencies
+      summary: Inactivate profile (Data Match)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                ref: profile-ref
+                note: optional observation
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{token}}'
+        - name: prefix
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: dataMatchId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+

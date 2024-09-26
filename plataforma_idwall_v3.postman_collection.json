@@ -1,0 +1,2814 @@
+{
+	"info": {
+		"_postman_id": "682d58af-ac1e-4232-ac75-02b8603d7ad3",
+		"name": "Plataforma idwall Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21636447"
+	},
+	"item": [
+		{
+			"name": "Profiles",
+			"item": [
+				{
+					"name": "Create profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ref\": \"profile-reference-id\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/profile",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Complete Profile",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ref\": \"profile-reference-id\",\n    \"personal\": {\n        \"name\": \"{{$randomFullName}}\",\n        \"cpfNumber\": \"000.000.00-00\",\n        \"birthDate\": \"1991-12-09T00:00:00-02:00\"\n    },\n    \"status\": 1,\n    \"affiliations\": {\n        \"mother\": {\n            \"name\":  \"{{$randomFullName}}\"\n        },\n        \"father\": {\n            \"name\":  \"{{$randomFullName}}\"\n        }\n    },\n    \"identity\": {\n        \"documents\": {\n            \"rg\": {\n                \"nome\":  \"{{$randomFullName}}\",\n                \"numeroRg\": \"00.000.000-0\",\n                \"dataExpedicao\": \"1991-12-09T00:00:00-02:00\",\n                \"orgaoExpedidor\": \"SSP\",\n                \"numeroCpf\": \"\",\n                \"naturalidade\": \"São Paulo\",\n                \"dataNascimento\": \"1991-12-09T00:00:00-02:00\",\n                \"docOrigem\": \"São Paulo\",\n                \"ufEmissao\": \"SP\",\n                \"filiacao\": {\n                    \"nomeMae\":  \"{{$randomFullName}}\",\n                    \"nomePai\":  \"{{$randomFullName}}\"\n                }\n            },\n            \"cnh\": {\n                \"nome\":  \"{{$randomFullName}}\",\n                \"numeroRg\": \"00.000.000-0\",\n                \"orgaoExpedidorRg\": \"SSP\",\n                \"estadoEmissao\": \"SP\",\n                \"numeroCpf\": \"000.000.000-00\",\n                \"dataNascimento\": \"1991-12-09T00:00:00-02:00\",\n                \"filiacao\": {\n                    \"nomeMae\": \"{{$randomFullName}}\",\n                    \"nomePai\": \"{{$randomFullName}}\"\n                },\n                \"categoria\": \"A - B\",\n                \"numeroRegistro\": \"00123456789\",\n                \"validade\": \"2025-12-09T00:00:00-03:00\",\n                \"primeiraHabilitacao\": \"2012-12-09T00:00:00-02:00\",\n                \"dataEmissao\": \"2012-12-09T00:00:00-02:00\",\n                \"cidadeEmissao\": \"São Paulo\",\n                \"numeroRenach\": \"SP00000000\",\n                \"numeroEspelho\": \"00000\",\n                \"observacao\": \"CNH completa\"\n            }\n        }\n    },\n    \"contacts\": {\n        \"email\": [\n            {\n                \"emailAddress\": \"{{$randomEmail}}\",\n                \"isMain\": true\n            },\n            {\n                \"emailAddress\": \"{{$randomEmail}}\",\n                \"isMain\": false\n            }\n        ],\n        \"phone\": [\n            {\n                \"type\": \"mobile\",\n                \"ddd\": \"11\",\n                \"number\": \"0000-0000\",\n                \"isMain\": true\n            },\n            {\n                \"type\": \"landline\",\n                \"ddd\": \"11\",\n                \"number\": \"0000-0000\",\n                \"isMain\": false\n            }\n        ]\n    },\n    \"addresses\": [\n        {\n            \"zipCode\": \"00000-000\",\n            \"street\": \"{{$randomStreetAddress}}\",\n            \"detail\": \"\",\n            \"neighborhood\": \"neighborhood\",\n            \"city\": \"São Paulo\",\n            \"state\": \"SP\",\n            \"isMain\": false,\n            \"type\": 1\n        },\n        {\n            \"zipCode\": \"00000-000\",\n            \"street\": \"{{$randomStreetAddress}}\",\n            \"detail\": \"\",\n            \"neighborhood\": \"neighborhood\",\n            \"city\": \"São Paulo\",\n            \"state\": \"SP\",\n            \"isMain\": true,\n            \"type\": 1\n        },\n    ],\n    \"others\": {\n        \"sex\": \"men\",\n        \"maritalStatus\": \"married\"\n    },\n    \"images\": [\n        {\n            \"imageToken\": \"obtained-temp-uri\",\n            \"ocrType\": \"NONE\",\n            \"category\": \"CNH\",\n            \"documentSide\": \"FULL\"\n        }\n    ],\n    \"segments\": [\n        \"first-segment-id\",\n        \"another-segment-id\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"created\": \"profile-reference-id\"\n    }\n}"
+						},
+						{
+							"name": "Create Profile with OCR",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ref\": \"profile-reference-id\",\n    \"images\": [\n        {\n            \"imageToken\": \"idwall://files/temp/some-rg-image-uri\",\n            \"ocrType\": \"EXTRACT\",\n            \"category\": \"RG\",\n            \"documentSide\": \"FRONT\"\n        },\n        {\n            \"imageToken\": \"idwall://files/temp/some-rg-image-uri\",\n            \"ocrType\": \"EXTRACT\",\n            \"category\": \"RG\",\n            \"documentSide\": \"BACK\"\n        }\n    ],\n    \"personal\": {\n        \"name\": \"{{$randomFullName}}\",\n        \"cpfNumber\": \"000.000.00-00\",\n        \"birthDate\": \"1991-12-09T00:00:00-02:00\"\n    },\n    \"status\": 1,\n    \"affiliations\": {\n        \"mother\": {\n            \"name\":  \"{{$randomFullName}}\"\n        },\n        \"father\": {\n            \"name\":  \"{{$randomFullName}}\"\n        }\n    },\n    \"contacts\": {\n        \"email\": [\n            {\n                \"emailAddress\": \"{{$randomEmail}}\",\n                \"isMain\": true\n            },\n            {\n                \"emailAddress\": \"{{$randomEmail}}\",\n                \"isMain\": false\n            }\n        ],\n        \"phone\": [\n            {\n                \"type\": \"mobile\",\n                \"ddd\": \"11\",\n                \"number\": \"0000-0000\",\n                \"isMain\": true\n            },\n            {\n                \"type\": \"landline\",\n                \"ddd\": \"11\",\n                \"number\": \"0000-0000\",\n                \"isMain\": false\n            }\n        ]\n    },\n    \"addresses\": [\n        {\n            \"zipCode\": \"00000-000\",\n            \"street\": \"{{$randomStreetAddress}}\",\n            \"detail\": \"\",\n            \"neighborhood\": \"neighborhood\",\n            \"city\": \"São Paulo\",\n            \"state\": \"SP\",\n            \"isMain\": false,\n            \"type\": 1\n        },\n        {\n            \"zipCode\": \"00000-000\",\n            \"street\": \"{{$randomStreetAddress}}\",\n            \"detail\": \"\",\n            \"neighborhood\": \"neighborhood\",\n            \"city\": \"São Paulo\",\n            \"state\": \"SP\",\n            \"isMain\": true,\n            \"type\": 1\n        }\n    ],\n    \"others\": {\n        \"sex\": \"men\",\n        \"maritalStatus\": \"married\"\n    },\n    \"segments\": [\n        \"first-segment-id\",\n        \"another-segment-id\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"created\": \"profile-reference-id\"\n    }\n}"
+						},
+						{
+							"name": "Validation error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "AUTHORIZATION_TOKEN"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile"
+									]
+								}
+							},
+							"status": "Not Acceptable",
+							"code": 406,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"Profile validation error\",\n        \"errors\": [\n            \"ref is a required field\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create profile with SDK key",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sdkToken\": \"sdk-xxxxxx-xxxxxxx-xxxxxx-xxxxxx\",\n    \"ref\": \"profile-reference-id\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/profile/sdk",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"profile",
+								"sdk"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Complete Profile",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ref\": \"profile-reference-id\",\n    \"sdkToken\": \"sdk-xxxxxx-xxxxxxx-xxxxxx-xxxxxx\",\n    \"personal\": {\n        \"name\": \"{{$randomFullName}}\",\n        \"cpfNumber\": \"000.000.00-00\",\n        \"birthDate\": \"1991-12-09T00:00:00-02:00\"\n    },\n    \"status\": 1,\n    \"affiliations\": {\n        \"mother\": {\n            \"name\":  \"{{$randomFullName}}\"\n        },\n        \"father\": {\n            \"name\":  \"{{$randomFullName}}\"\n        }\n    },\n    \"contacts\": {\n        \"email\": [\n            {\n                \"emailAddress\": \"{{$randomEmail}}\",\n                \"isMain\": true\n            },\n            {\n                \"emailAddress\": \"{{$randomEmail}}\",\n                \"isMain\": false\n            }\n        ],\n        \"phone\": [\n            {\n                \"type\": \"mobile\",\n                \"ddd\": \"11\",\n                \"number\": \"0000-0000\",\n                \"isMain\": true\n            },\n            {\n                \"type\": \"landline\",\n                \"ddd\": \"11\",\n                \"number\": \"0000-0000\",\n                \"isMain\": false\n            }\n        ]\n    },\n    \"addresses\": [\n        {\n            \"zipCode\": \"00000-000\",\n            \"street\": \"{{$randomStreetAddress}}\",\n            \"detail\": \"\",\n            \"neighborhood\": \"neighborhood\",\n            \"city\": \"São Paulo\",\n            \"state\": \"SP\",\n            \"isMain\": false,\n            \"type\": 1\n        },\n        {\n            \"zipCode\": \"00000-000\",\n            \"street\": \"{{$randomStreetAddress}}\",\n            \"detail\": \"\",\n            \"neighborhood\": \"neighborhood\",\n            \"city\": \"São Paulo\",\n            \"state\": \"SP\",\n            \"isMain\": true,\n            \"type\": 1\n        },\n    ],\n    \"others\": {\n        \"sex\": \"men\",\n        \"maritalStatus\": \"married\"\n    },\n    \"segments\": [\n        \"first-segment-id\",\n        \"another-segment-id\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"created\": \"profile-reference-id\"\n    }\n}"
+						},
+						{
+							"name": "Validation error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "AUTHORIZATION_TOKEN"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile"
+									]
+								}
+							},
+							"status": "Not Acceptable",
+							"code": 406,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"Profile validation error\",\n        \"errors\": [\n            \"ref is a required field\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/profile/:ref",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"profile",
+								":ref"
+							],
+							"variable": [
+								{
+									"key": "ref",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "AUTHORIZATION_TOKEN",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile/:ref",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile",
+										":ref"
+									],
+									"variable": [
+										{
+											"key": "ref",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 19:36:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "4"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \n        {\n            \"contact\": {\n                \"phoneNumber\": \"\",\n                \"emailAddress\": \"\"\n            },\n            \"identity\": {\n                \"biometric\": {\n                    \"face\": {\n                        \"imagesUrls\": []\n                    }\n                },\n                \"documents\": {\n                    \"rg\": {\n                        \"ufEmissao\": null,\n                        \"orgaoExpedidor\": null,\n                        \"numeroCpf\": null,\n                        \"docOrigem\": null,\n                        \"dataNascimento\": null,\n                        \"naturalidade\": null,\n                        \"filiacao\": {\n                            \"nomeMae\": null,\n                            \"nomePai\": null\n                        },\n                        \"dataExpedicao\": null,\n                        \"numeroRg\": null,\n                        \"nome\": null,\n                        \"imagesUrls\": []\n                    },\n                    \"cnh\": {\n                        \"observacao\": null,\n                        \"numeroEspelho\": null,\n                        \"numeroSeguranca\": null,\n                        \"numeroRenach\": null,\n                        \"dataEmissao\": null,\n                        \"estadoEmissao\": null,\n                        \"cidadeEmissao\": null,\n                        \"primeiraHabilitacao\": null,\n                        \"validade\": null,\n                        \"numeroRegistro\": null,\n                        \"categoria\": null,\n                        \"acc\": null,\n                        \"permissao\": null,\n                        \"filiacao\": {\n                            \"nomeMae\": null,\n                            \"nomePai\": null\n                        },\n                        \"dataNascimento\": null,\n                        \"numeroCpf\": null,\n                        \"orgaoExpedidorRg\": null,\n                        \"numeroRg\": null,\n                        \"nome\": null,\n                        \"imagesUrls\": []\n                    }\n                }\n            },\n            \"personal\": {\n                \"birthDate\": null,\n                \"name\": null\n            },\n            \"keys\": {\n                \"cpfNumber\": null\n            },\n            \"status\": 1,\n            \"ref\": \"REFERENCIA\",\n            \"createdAt\": \"2020-01-06T18:14:51.838Z\",\n            \"updatedAt\": \"2020-01-06T18:14:51.838Z\",\n            \"createdBy\": {\n                \"company\": {\n                    \"name\": \"Company name\",\n                    \"slug\": \"company-slug\",\n                    \"id\": \"company-uuid\"\n                },\n                \"user\": {\n                    \"name\": \"John\",\n                    \"email\": \"john@idwall.com\",\n                    \"id\": \"user-uuid\"\n                }\n            },\n            \"flows\": {\n                \"finished\": {\n                    \"names\": [\"OnBoarding\"],\n                    \"total\": 1\n                },\n                \"lastAt\": \"2020-01-06T18:14:51.838Z\",\n                \"total\": 5\n            }\n        }\n}"
+						},
+						{
+							"name": "Not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "AUTHORIZATION_TOKEN"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile/:ref",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile",
+										":ref"
+									],
+									"variable": [
+										{
+											"key": "ref",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 20:33:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "3"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Profile not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List profiles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text",
+								"description": "Autenticação v2 ( Backoffice UUID Token )"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/profile/search",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"profile",
+								"search"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "flowId",
+									"value": "{{flow-id}}",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "pendencyFlowId",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "flowStatus",
+									"value": "WAITING_MANUAL_ACTION",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "20",
+									"disabled": true
+								},
+								{
+									"key": "withPendency",
+									"value": "true",
+									"description": "Filtra os perfis com ou sem pendência",
+									"disabled": true
+								},
+								{
+									"key": "q",
+									"value": "Name",
+									"disabled": true
+								}
+							]
+						},
+						"description": "## Headers\n- `Authorization` **[required]**: Token recebido na request **Autenticação > Obtendo um token de acesso**.\n- `Content-Type`: Deve ser sempre `application/json`.\n\n## Params\n\n- `q`: Parâmetro de busca por nome e cpf no perfil. \n- `status`: Situação atual do perfil. \n    1 = ativo / 0 = inativo\n- `limit`: Quantidade de itens por página.\n- `page`: Página atual.\n\n## Resposta\n- HTTP **200 OK**\n- Body de resposta em JSON."
+					},
+					"response": [
+						{
+							"name": "Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "AUTHORIZATION_TOKEN"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"contact\": {\n                \"phoneNumber\": \"\",\n                \"emailAddress\": \"\"\n            },\n            \"identity\": {\n                \"biometric\": {\n                    \"face\": {\n                        \"imagesUrls\": []\n                    }\n                },\n                \"documents\": {\n                    \"rg\": {\n                        \"ufEmissao\": null,\n                        \"orgaoExpedidor\": null,\n                        \"numeroCpf\": null,\n                        \"docOrigem\": null,\n                        \"dataNascimento\": null,\n                        \"naturalidade\": null,\n                        \"filiacao\": {\n                            \"nomeMae\": null,\n                            \"nomePai\": null\n                        },\n                        \"dataExpedicao\": null,\n                        \"numeroRg\": null,\n                        \"nome\": null,\n                        \"imagesUrls\": []\n                    },\n                    \"cnh\": {\n                        \"observacao\": null,\n                        \"numeroEspelho\": null,\n                        \"numeroSeguranca\": null,\n                        \"numeroRenach\": null,\n                        \"dataEmissao\": null,\n                        \"estadoEmissao\": null,\n                        \"cidadeEmissao\": null,\n                        \"primeiraHabilitacao\": null,\n                        \"validade\": null,\n                        \"numeroRegistro\": null,\n                        \"categoria\": null,\n                        \"acc\": null,\n                        \"permissao\": null,\n                        \"filiacao\": {\n                            \"nomeMae\": null,\n                            \"nomePai\": null\n                        },\n                        \"dataNascimento\": null,\n                        \"numeroCpf\": null,\n                        \"orgaoExpedidorRg\": null,\n                        \"numeroRg\": null,\n                        \"nome\": null,\n                        \"imagesUrls\": []\n                    }\n                }\n            },\n            \"personal\": {\n                \"birthDate\": null,\n                \"name\": null\n            },\n            \"status\": 1,\n            \"ref\": \"REFERENCIA\",\n            \"createdAt\": \"2020-01-06T18:14:51.838Z\",\n            \"updatedAt\": \"2020-01-06T18:14:51.838Z\",\n            \"createdBy\": {\n                \"company\": {\n                    \"name\": \"Company name\",\n                    \"slug\": \"company-slug\",\n                    \"id\": \"company-uuid\"\n                },\n                \"user\": {\n                    \"name\": \"John\",\n                    \"email\": \"john@idwall.com\",\n                    \"id\": \"user-uuid\"\n                }\n            }\n        }\n    ],\n    \"pagination\": {\n        \"limit\": 10,\n        \"page\": 1,\n        \"total\": 1,\n        \"pages\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"personal\": {\n        \"name\": \"{{$randomFullName}}\",\n        \"cpfNumber\": \"000.000.00-00\",\n        \"birthDate\": \"1991-12-09T00:00:00-02:00\"\n    },\n    \"status\": 1,\n    \"affiliations\": {\n        \"mother\": {\n            \"name\":  \"{{$randomFullName}}\"\n        },\n        \"father\": {\n            \"name\":  \"{{$randomFullName}}\"\n        }\n    },\n    \"identity\": {\n        \"documents\": {\n            \"rg\": {\n                \"nome\":  \"{{$randomFullName}}\",\n                \"numeroRg\": \"00.000.000-0\",\n                \"dataExpedicao\": \"1991-12-09T00:00:00-02:00\",\n                \"orgaoExpedidor\": \"SSP\",\n                \"numeroCpf\": \"\",\n                \"naturalidade\": \"São Paulo\",\n                \"dataNascimento\": \"1991-12-09T00:00:00-02:00\",\n                \"docOrigem\": \"São Paulo\",\n                \"ufEmissao\": \"SP\",\n                \"filiacao\": {\n                    \"nomeMae\":  \"{{$randomFullName}}\",\n                    \"nomePai\":  \"{{$randomFullName}}\"\n                }\n            },\n            \"cnh\": {\n                \"nome\":  \"{{$randomFullName}}\",\n                \"numeroRg\": \"00.000.000-0\",\n                \"orgaoExpedidorRg\": \"SSP\",\n                \"estadoEmissao\": \"SP\",\n                \"numeroCpf\": \"000.000.000-00\",\n                \"dataNascimento\": \"1991-12-09T00:00:00-02:00\",\n                \"filiacao\": {\n                    \"nomeMae\": \"{{$randomFullName}}\",\n                    \"nomePai\": \"{{$randomFullName}}\"\n                },\n                \"categoria\": \"A - B\",\n                \"numeroRegistro\": \"00123456789\",\n                \"validade\": \"2025-12-09T00:00:00-03:00\",\n                \"primeiraHabilitacao\": \"2012-12-09T00:00:00-02:00\",\n                \"dataEmissao\": \"2012-12-09T00:00:00-02:00\",\n                \"cidadeEmissao\": \"São Paulo\",\n                \"numeroRenach\": \"SP00000000\",\n                \"numeroEspelho\": \"00000\",\n                \"observacao\": \"CNH completa\"\n            }\n        }\n    },\n    \"contacts\": {\n        \"email\": [\n            {\n                \"emailAddress\": \"{{$randomEmail}}\",\n                \"isMain\": true\n            },\n            {\n                \"emailAddress\": \"{{$randomEmail}}\",\n                \"isMain\": false\n            }\n        ],\n        \"phone\": [\n            {\n                \"type\": \"mobile\",\n                \"ddd\": \"11\",\n                \"number\": \"0000-0000\",\n                \"isMain\": true\n            },\n            {\n                \"type\": \"landline\",\n                \"ddd\": \"11\",\n                \"number\": \"0000-0000\",\n                \"isMain\": false\n            }\n        ]\n    },\n    \"addresses\": [\n        {\n            \"zipCode\": \"00000-000\",\n            \"street\": \"{{$randomStreetAddress}}\",\n            \"detail\": \"\",\n            \"neighborhood\": \"neighborhood\",\n            \"city\": \"São Paulo\",\n            \"state\": \"SP\",\n            \"isMain\": false,\n            \"type\": 1\n        },\n        {\n            \"zipCode\": \"00000-000\",\n            \"street\": \"{{$randomStreetAddress}}\",\n            \"detail\": \"\",\n            \"neighborhood\": \"neighborhood\",\n            \"city\": \"São Paulo\",\n            \"state\": \"SP\",\n            \"isMain\": true,\n            \"type\": 1\n        }\n    ],\n    \"others\": {\n        \"sex\": \"men\",\n        \"maritalStatus\": \"married\"\n    },\n    \"images\": [\n        {\n            \"imageToken\": \"idwall://files/temp/some-cnh-image-uri\",\n            \"ocrType\": \"NONE\",\n            \"category\": \"CNH\",\n            \"documentSide\": \"FULL\"\n        },\n        {\n            \"imageToken\": \"idwall://files/temp/some-face-image-uri\",\n            \"ocrType\": \"NONE\",\n            \"category\": \"FACE\"\n        },\n        {\n            \"imageToken\": \"idwall://files/temp/some-unknown-image-uri\",\n            \"ocrType\": \"NONE\",\n            \"category\": \"UNKNOWN\"\n        }\n    ],\n    \"segments\": [\n        \"first-segment-id\",\n        \"another-segment-id\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/profile/:ref",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"profile",
+								":ref"
+							],
+							"variable": [
+								{
+									"key": "ref",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "AUTHORIZATION_TOKEN",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile/:ref",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile",
+										":ref"
+									],
+									"variable": [
+										{
+											"key": "ref",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 19:36:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "4"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"modified\": \"profile-reference-id\"\n    }\n}"
+						},
+						{
+							"name": "Validation error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "AUTHORIZATION_TOKEN"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile"
+									]
+								}
+							},
+							"status": "Not Acceptable",
+							"code": 406,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"Profile validation error\",\n        \"errors\": [\n            \"ref is a required field\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update profile with SDK key",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/profile/:ref/sdk",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"profile",
+								":ref",
+								"sdk"
+							],
+							"variable": [
+								{
+									"key": "ref",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Complete Profile",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "default"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ref\": \"profile-reference-id\",\n    \"sdkToken\": \"sdk-xxxxxx-xxxxxxx-xxxxxx-xxxxxx\",\n    \"personal\": {\n        \"name\": \"{{$randomFullName}}\",\n        \"cpfNumber\": \"000.000.00-00\",\n        \"birthDate\": \"1991-12-09T00:00:00-02:00\"\n    },\n    \"status\": 1,\n    \"affiliations\": {\n        \"mother\": {\n            \"name\":  \"{{$randomFullName}}\"\n        },\n        \"father\": {\n            \"name\":  \"{{$randomFullName}}\"\n        }\n    },\n    \"contacts\": {\n        \"email\": [\n            {\n                \"emailAddress\": \"{{$randomEmail}}\",\n                \"isMain\": true\n            },\n            {\n                \"emailAddress\": \"{{$randomEmail}}\",\n                \"isMain\": false\n            }\n        ],\n        \"phone\": [\n            {\n                \"type\": \"mobile\",\n                \"ddd\": \"11\",\n                \"number\": \"0000-0000\",\n                \"isMain\": true\n            },\n            {\n                \"type\": \"landline\",\n                \"ddd\": \"11\",\n                \"number\": \"0000-0000\",\n                \"isMain\": false\n            }\n        ]\n    },\n    \"addresses\": [\n        {\n            \"zipCode\": \"00000-000\",\n            \"street\": \"{{$randomStreetAddress}}\",\n            \"detail\": \"\",\n            \"neighborhood\": \"neighborhood\",\n            \"city\": \"São Paulo\",\n            \"state\": \"SP\",\n            \"isMain\": false,\n            \"type\": 1\n        },\n        {\n            \"zipCode\": \"00000-000\",\n            \"street\": \"{{$randomStreetAddress}}\",\n            \"detail\": \"\",\n            \"neighborhood\": \"neighborhood\",\n            \"city\": \"São Paulo\",\n            \"state\": \"SP\",\n            \"isMain\": true,\n            \"type\": 1\n        },\n    ],\n    \"others\": {\n        \"sex\": \"men\",\n        \"maritalStatus\": \"married\"\n    },\n    \"segments\": [\n        \"first-segment-id\",\n        \"another-segment-id\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"created\": \"profile-reference-id\"\n    }\n}"
+						},
+						{
+							"name": "Validation error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "AUTHORIZATION_TOKEN"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile"
+									]
+								}
+							},
+							"status": "Not Acceptable",
+							"code": 406,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"Profile validation error\",\n        \"errors\": [\n            \"ref is a required field\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Start flow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/profile/:profileRef/flow/:flowId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"profile",
+								":profileRef",
+								"flow",
+								":flowId"
+							],
+							"variable": [
+								{
+									"key": "profileRef",
+									"value": ""
+								},
+								{
+									"key": "flowId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "AUTHORIZATION_TOKEN",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile/:profileRef/flow/:flowId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile",
+										":profileRef",
+										"flow",
+										":flowId"
+									],
+									"variable": [
+										{
+											"key": "profileRef",
+											"value": ""
+										},
+										{
+											"key": "flowId",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 19:36:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "4"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"created\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Profile flows",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/profile/:ref/profileFlows?limit=10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"profile",
+								":ref",
+								"profileFlows"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							],
+							"variable": [
+								{
+									"key": "ref",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "AUTHORIZATION_TOKEN",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile/:ref",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile",
+										":ref"
+									],
+									"variable": [
+										{
+											"key": "ref",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 19:36:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "4"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n   \"data\":[\n     {\n        \"id\": \"d6f8b981-370d-45dd-9369-725fc8cb22ec\",\n        \"createdAt\": \"2022-04-08T20:32:54.541Z\",\n        \"stages\": [\n            {\n                \"stageId\": \"stage-id\",\n                \"status\": \"FINISHED\",\n                \"issuer\": \"issuer\",\n                \"type\": \"BGC\",\n                \"params\": {\n                    \"setting\": \"setting-name\",\n                    \"inputsMapping\": [\n                        {\n                            \"here\": [\n                                \"birthDate\",\n                                \"identity.documents.cnh.dataNascimento\",\n                                \"identity.documents.rg.dataNascimento\",\n                                \"personal.birthDate\"\n                            ],\n                            \"there\": {\n                                \"input\": \"person.birthDate\",\n                                \"inputLegacy\": \"cpf_data_de_nascimento\",\n                                \"options\": [\n                                    \"person.birthDate\",\n                                    \"PERSON_BIRTH_DATE\",\n                                    \"cpf_data_de_nascimento\"\n                                ]\n                            }\n                        },\n                        {\n                            \"here\": [\n                                \"name\",\n                                \"identity.documents.cnh.nome\",\n                                \"identity.documents.rg.nome\",\n                                \"personal.name\"\n                            ],\n                            \"there\": {\n                                \"input\": \"person.name\",\n                                \"inputLegacy\": \"cpf_nome\",\n                                \"options\": [\n                                    \"person.name\",\n                                    \"PERSON_NAME\",\n                                    \"cpf_nome\"\n                                ]\n                            }\n                        },\n                        {\n                            \"here\": [\n                                \"cpfNumber\",\n                                \"identity.documents.cnh.numeroCpf\",\n                                \"identity.documents.rg.numeroCpf\",\n                                \"personal.cpfNumber\"\n                            ],\n                            \"there\": {\n                                \"input\": \"person.document.cpf.numero\",\n                                \"inputLegacy\": \"cpf_numero\",\n                                \"options\": [\n                                    \"person.document.cpf.numero\",\n                                    \"PERSON_CPF_NUMBER\",\n                                    \"cpf_numero\"\n                                ]\n                            }\n                        }\n                    ]\n                },\n                \"conditions\": [\n                    \"birthDate\",\n                    \"name\",\n                    \"cpfNumber\"\n                ],\n                \"updatedAt\": \"2022-04-08T20:33:20.692Z\",\n                \"ref\": \"reference-id\",\n                \"usedFields\": [\n                    {\n                        \"field\": \"personal.birthDate\",\n                        \"value\": \"1992-07-03T00:00:00-03:00\",\n                        \"there\": \"cpf_data_de_nascimento\"\n                    },\n                    {\n                        \"field\": \"personal.name\",\n                        \"value\": \"Thays dos Santos Neves\",\n                        \"there\": \"cpf_nome\"\n                    },\n                    {\n                        \"field\": \"personal.cpfNumber\",\n                        \"value\": \"11664749764\",\n                        \"there\": \"cpf_numero\"\n                    }\n                ],\n                \"response\": {\n                    \"entity\": {\n                        \"name\": \"person name\",\n                        \"document\": \"000.000.000-00\"\n                    },\n                    \"report\": {\n                        \"numero\": \"report-id\",\n                        \"status\": \"CONCLUIDO\",\n                        \"nome\": \"setting-name\",\n                        \"mensagem\": \"Válido.\",\n                        \"resultado\": \"VALID\",\n                        \"validado_em\": \"2022-04-08T20:32:55.273Z\",\n                        \"validado_por\": null,\n                        \"validado_manualmente\": false,\n                        \"atualizado_em\": \"2022-04-08T20:33:20.314Z\",\n                        \"criado_em\": \"2022-04-08T20:32:54.805Z\",\n                        \"criado_por\": \"john@emai.co\",\n                        \"numero_pai\": null,\n                        \"descricao\": \"description\",\n                        \"titulo\": \"title\",\n                        \"flag\": []\n                    },\n                    \"sections\": [\n                        {\n                            \"section\": \"cpf\",\n                            \"checks\": [\n                                {\n                                    \"regra\": \"idwall.matrix.regras.cpf.RegraDataNascimento\",\n                                    \"nome\": \"Data de Nascimento na Receita Federal\",\n                                    \"descricao\": \"Data de Nascimento deve ser igual ao cadastrado na Receita Federal\",\n                                    \"resultado\": \"VALID\"\n                                },\n                                {\n                                    \"regra\": \"idwall.matrix.regras.cpf.RegraFuzzyNomeReceitaFederal\",\n                                    \"nome\": \"Nome na Receita Federal (Por semelhança)\",\n                                    \"descricao\": \"Nome deve ser similar ao cadastrado na Receita Federal\",\n                                    \"resultado\": \"VALID\"\n                                },\n                                {\n                                    \"regra\": \"idwall.matrix.regras.cpf.RegraObito\",\n                                    \"nome\": \"Registro de óbito na Receita Federal\",\n                                    \"descricao\": \"Não deve constar registro de óbito na Receita Federal\",\n                                    \"resultado\": \"VALID\"\n                                },\n                                {\n                                    \"regra\": \"idwall.matrix.regras.cpf.RegraSituacaoReceitaFederal\",\n                                    \"nome\": \"Situação Cadastral Regular\",\n                                    \"descricao\": \"Situação cadastral do CPF deve ser REGULAR\",\n                                    \"resultado\": \"VALID\"\n                                }\n                            ],\n                            \"status\": \"VALID\"\n                        },\n                        {\n                            \"section\": \"parametros\",\n                            \"checks\": []\n                        }\n                    ],\n                    \"data\": {\n                        \"atualizado_em\": \"2022-04-08T20:33:20.314Z\",\n                        \"criado_em\": \"2022-04-08T20:32:54.805Z\",\n                        \"mensagem\": \"Válido.\",\n                        \"nome\": \"setting-name\",\n                        \"numero\": \"report-id\",\n                        \"resultado\": \"VALID\",\n                        \"status\": \"CONCLUIDO\",\n                        \"validado_em\": \"2022-04-08T20:32:55.273Z\",\n                        \"validado_manualmente\": false,\n                        \"cpf\": {\n                            \"numero\": \"000.000.000-00\",\n                            \"nome\": \"person name\",\n                            \"data_de_nascimento\": \"00/00/0000\",\n                            \"cpf_situacao_cadastral\": \"REGULAR\",\n                            \"cpf_data_de_inscricao\": \"00/00/0000\",\n                            \"cpf_digito_verificador\": \"00\",\n                            \"cpf_anterior_1990\": \"N\",\n                            \"ano_obito\": \"\",\n                            \"nome_social\": \"\",\n                            \"similaridade\": 1,\n                            \"grafias\": [\n                                \"\"\n                            ]\n                        }\n                    },\n                    \"parameters\": {\n                        \"cpf\": \"00000000000\",\n                        \"data_de_nascimento\": \"00/00/0000\",\n                        \"nome\": \"person name\",\n                        \"parametros_auxiliares\": [\n                            {\n                                \"tipo\": \"CPF_NOME\",\n                                \"fonte\": \"CPF Receita Federal\",\n                                \"valor\": \"person name\"\n                            }\n                        ]\n                    },\n                    \"queries\": [\n                        {\n                            \"nome\": \"CPF Receita Federal\",\n                            \"idConsulta\": \"00000000\",\n                            \"status_fonte\": \"OK\",\n                            \"tentativas\": [\n                                {\n                                    \"duracao_tentativa\": 21988,\n                                    \"hora_fim_tentativa\": \"2022-04-08T20:33:18.923Z\",\n                                    \"hora_inicio_tentativa\": \"2022-04-08T20:32:56.935Z\",\n                                    \"msg_erro_tentativa\": null,\n                                    \"nome_fonte\": \"CPF Receita Federal\",\n                                    \"status_fonte\": \"OK\",\n                                    \"status_tentativa\": \"SUCCESS\",\n                                    \"tipo_erro_tentativa\": null\n                                }\n                            ]\n                        }\n                    ],\n                    \"validation\": [\n                        {\n                            \"regra\": \"idwall.matrix.regras.cpf.RegraDataNascimento\",\n                            \"nome\": \"Data de Nascimento na Receita Federal\",\n                            \"descricao\": \"Data de Nascimento deve ser igual ao cadastrado na Receita Federal\",\n                            \"resultado\": \"VALID\"\n                        },\n                        {\n                            \"regra\": \"idwall.matrix.regras.cpf.RegraFuzzyNomeReceitaFederal\",\n                            \"nome\": \"Nome na Receita Federal (Por semelhança)\",\n                            \"descricao\": \"Nome deve ser similar ao cadastrado na Receita Federal\",\n                            \"resultado\": \"VALID\"\n                        },\n                        {\n                            \"regra\": \"idwall.matrix.regras.cpf.RegraObito\",\n                            \"nome\": \"Registro de óbito na Receita Federal\",\n                            \"descricao\": \"Não deve constar registro de óbito na Receita Federal\",\n                            \"resultado\": \"VALID\"\n                        },\n                        {\n                            \"regra\": \"idwall.matrix.regras.cpf.RegraSituacaoReceitaFederal\",\n                            \"nome\": \"Situação Cadastral Regular\",\n                            \"descricao\": \"Situação cadastral do CPF deve ser REGULAR\",\n                            \"resultado\": \"VALID\"\n                        }\n                    ]\n                }\n            },\n            {\n                \"stageId\": \"stage-uuid\",\n                \"status\": \"FINISHED\",\n                \"issuer\": \"issuer\",\n                \"type\": \"WEBHOOK\",\n                \"params\": {\n                    \"urls\": [\n                        \"http://reprovado.com\"\n                    ]\n                },\n                \"conditions\": [],\n                \"updatedAt\": \"2022-04-08T20:33:20.783Z\"\n            }\n        ],\n        \"status\": \"FINISHED\",\n        \"input\": {\n            \"profileRef\": \"profile-reference-id\",\n            \"flowId\": \"flow-id\",\n            \"triggerType\": \"MANUAL\"\n        },\n        \"triggerType\": \"MANUAL\",\n        \"nextStage\": \"next-stage-id\",\n        \"profileRef\": \"profile-reference-id\",\n        \"flowName\": \"flow name\",\n        \"flowId\": \"flow-uuid\",\n        \"updatedAt\": \"2022-04-08T20:33:20.790Z\",\n        \"createdBy\": {\n            \"company\": {\n                \"id\": \"000\",\n                \"name\": \"company name\",\n                \"slug\": \"company_slug\"\n            },\n            \"user\": {\n                \"id\": \"00\",\n                \"email\": \"jonh-doe@email.co\",\n                \"name\": \"john doe\"\n            }\n        }\n     }\n   ],\n   \"pagination\":{\n      \"limit\":10,\n      \"page\":1,\n      \"total\":1,\n      \"pages\":1\n   }\n}"
+						},
+						{
+							"name": "Not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "AUTHORIZATION_TOKEN"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile/:ref",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile",
+										":ref"
+									],
+									"variable": [
+										{
+											"key": "ref",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 20:33:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "3"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Profile not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Last profile flow",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/profile/:ref/lastProfileFlow",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"profile",
+								":ref",
+								"lastProfileFlow"
+							],
+							"variable": [
+								{
+									"key": "ref",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "AUTHORIZATION_TOKEN",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile/:ref",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile",
+										":ref"
+									],
+									"variable": [
+										{
+											"key": "ref",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 19:36:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "4"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"d6f8b981-370d-45dd-9369-725fc8cb22ec\",\n        \"createdAt\": \"2022-04-08T20:32:54.541Z\",\n        \"stages\": [\n            {\n                \"stageId\": \"stage-id\",\n                \"status\": \"FINISHED\",\n                \"issuer\": \"issuer\",\n                \"type\": \"BGC\",\n                \"params\": {\n                    \"setting\": \"setting-name\",\n                    \"inputsMapping\": [\n                        {\n                            \"here\": [\n                                \"birthDate\",\n                                \"identity.documents.cnh.dataNascimento\",\n                                \"identity.documents.rg.dataNascimento\",\n                                \"personal.birthDate\"\n                            ],\n                            \"there\": {\n                                \"input\": \"person.birthDate\",\n                                \"inputLegacy\": \"cpf_data_de_nascimento\",\n                                \"options\": [\n                                    \"person.birthDate\",\n                                    \"PERSON_BIRTH_DATE\",\n                                    \"cpf_data_de_nascimento\"\n                                ]\n                            }\n                        },\n                        {\n                            \"here\": [\n                                \"name\",\n                                \"identity.documents.cnh.nome\",\n                                \"identity.documents.rg.nome\",\n                                \"personal.name\"\n                            ],\n                            \"there\": {\n                                \"input\": \"person.name\",\n                                \"inputLegacy\": \"cpf_nome\",\n                                \"options\": [\n                                    \"person.name\",\n                                    \"PERSON_NAME\",\n                                    \"cpf_nome\"\n                                ]\n                            }\n                        },\n                        {\n                            \"here\": [\n                                \"cpfNumber\",\n                                \"identity.documents.cnh.numeroCpf\",\n                                \"identity.documents.rg.numeroCpf\",\n                                \"personal.cpfNumber\"\n                            ],\n                            \"there\": {\n                                \"input\": \"person.document.cpf.numero\",\n                                \"inputLegacy\": \"cpf_numero\",\n                                \"options\": [\n                                    \"person.document.cpf.numero\",\n                                    \"PERSON_CPF_NUMBER\",\n                                    \"cpf_numero\"\n                                ]\n                            }\n                        }\n                    ]\n                },\n                \"conditions\": [\n                    \"birthDate\",\n                    \"name\",\n                    \"cpfNumber\"\n                ],\n                \"updatedAt\": \"2022-04-08T20:33:20.692Z\",\n                \"ref\": \"reference-id\",\n                \"usedFields\": [\n                    {\n                        \"field\": \"personal.birthDate\",\n                        \"value\": \"1992-07-03T00:00:00-03:00\",\n                        \"there\": \"cpf_data_de_nascimento\"\n                    },\n                    {\n                        \"field\": \"personal.name\",\n                        \"value\": \"Thays dos Santos Neves\",\n                        \"there\": \"cpf_nome\"\n                    },\n                    {\n                        \"field\": \"personal.cpfNumber\",\n                        \"value\": \"11664749764\",\n                        \"there\": \"cpf_numero\"\n                    }\n                ],\n                \"response\": {\n                    \"entity\": {\n                        \"name\": \"person name\",\n                        \"document\": \"000.000.000-00\"\n                    },\n                    \"report\": {\n                        \"numero\": \"report-id\",\n                        \"status\": \"CONCLUIDO\",\n                        \"nome\": \"setting-name\",\n                        \"mensagem\": \"Válido.\",\n                        \"resultado\": \"VALID\",\n                        \"validado_em\": \"2022-04-08T20:32:55.273Z\",\n                        \"validado_por\": null,\n                        \"validado_manualmente\": false,\n                        \"atualizado_em\": \"2022-04-08T20:33:20.314Z\",\n                        \"criado_em\": \"2022-04-08T20:32:54.805Z\",\n                        \"criado_por\": \"john@emai.co\",\n                        \"numero_pai\": null,\n                        \"descricao\": \"description\",\n                        \"titulo\": \"title\",\n                        \"flag\": []\n                    },\n                    \"sections\": [\n                        {\n                            \"section\": \"cpf\",\n                            \"checks\": [\n                                {\n                                    \"regra\": \"idwall.matrix.regras.cpf.RegraDataNascimento\",\n                                    \"nome\": \"Data de Nascimento na Receita Federal\",\n                                    \"descricao\": \"Data de Nascimento deve ser igual ao cadastrado na Receita Federal\",\n                                    \"resultado\": \"VALID\"\n                                },\n                                {\n                                    \"regra\": \"idwall.matrix.regras.cpf.RegraFuzzyNomeReceitaFederal\",\n                                    \"nome\": \"Nome na Receita Federal (Por semelhança)\",\n                                    \"descricao\": \"Nome deve ser similar ao cadastrado na Receita Federal\",\n                                    \"resultado\": \"VALID\"\n                                },\n                                {\n                                    \"regra\": \"idwall.matrix.regras.cpf.RegraObito\",\n                                    \"nome\": \"Registro de óbito na Receita Federal\",\n                                    \"descricao\": \"Não deve constar registro de óbito na Receita Federal\",\n                                    \"resultado\": \"VALID\"\n                                },\n                                {\n                                    \"regra\": \"idwall.matrix.regras.cpf.RegraSituacaoReceitaFederal\",\n                                    \"nome\": \"Situação Cadastral Regular\",\n                                    \"descricao\": \"Situação cadastral do CPF deve ser REGULAR\",\n                                    \"resultado\": \"VALID\"\n                                }\n                            ],\n                            \"status\": \"VALID\"\n                        },\n                        {\n                            \"section\": \"parametros\",\n                            \"checks\": []\n                        }\n                    ],\n                    \"data\": {\n                        \"atualizado_em\": \"2022-04-08T20:33:20.314Z\",\n                        \"criado_em\": \"2022-04-08T20:32:54.805Z\",\n                        \"mensagem\": \"Válido.\",\n                        \"nome\": \"setting-name\",\n                        \"numero\": \"report-id\",\n                        \"resultado\": \"VALID\",\n                        \"status\": \"CONCLUIDO\",\n                        \"validado_em\": \"2022-04-08T20:32:55.273Z\",\n                        \"validado_manualmente\": false,\n                        \"cpf\": {\n                            \"numero\": \"000.000.000-00\",\n                            \"nome\": \"person name\",\n                            \"data_de_nascimento\": \"00/00/0000\",\n                            \"cpf_situacao_cadastral\": \"REGULAR\",\n                            \"cpf_data_de_inscricao\": \"00/00/0000\",\n                            \"cpf_digito_verificador\": \"00\",\n                            \"cpf_anterior_1990\": \"N\",\n                            \"ano_obito\": \"\",\n                            \"nome_social\": \"\",\n                            \"similaridade\": 1,\n                            \"grafias\": [\n                                \"\"\n                            ]\n                        }\n                    },\n                    \"parameters\": {\n                        \"cpf\": \"00000000000\",\n                        \"data_de_nascimento\": \"00/00/0000\",\n                        \"nome\": \"person name\",\n                        \"parametros_auxiliares\": [\n                            {\n                                \"tipo\": \"CPF_NOME\",\n                                \"fonte\": \"CPF Receita Federal\",\n                                \"valor\": \"person name\"\n                            }\n                        ]\n                    },\n                    \"queries\": [\n                        {\n                            \"nome\": \"CPF Receita Federal\",\n                            \"idConsulta\": \"00000000\",\n                            \"status_fonte\": \"OK\",\n                            \"tentativas\": [\n                                {\n                                    \"duracao_tentativa\": 21988,\n                                    \"hora_fim_tentativa\": \"2022-04-08T20:33:18.923Z\",\n                                    \"hora_inicio_tentativa\": \"2022-04-08T20:32:56.935Z\",\n                                    \"msg_erro_tentativa\": null,\n                                    \"nome_fonte\": \"CPF Receita Federal\",\n                                    \"status_fonte\": \"OK\",\n                                    \"status_tentativa\": \"SUCCESS\",\n                                    \"tipo_erro_tentativa\": null\n                                }\n                            ]\n                        }\n                    ],\n                    \"validation\": [\n                        {\n                            \"regra\": \"idwall.matrix.regras.cpf.RegraDataNascimento\",\n                            \"nome\": \"Data de Nascimento na Receita Federal\",\n                            \"descricao\": \"Data de Nascimento deve ser igual ao cadastrado na Receita Federal\",\n                            \"resultado\": \"VALID\"\n                        },\n                        {\n                            \"regra\": \"idwall.matrix.regras.cpf.RegraFuzzyNomeReceitaFederal\",\n                            \"nome\": \"Nome na Receita Federal (Por semelhança)\",\n                            \"descricao\": \"Nome deve ser similar ao cadastrado na Receita Federal\",\n                            \"resultado\": \"VALID\"\n                        },\n                        {\n                            \"regra\": \"idwall.matrix.regras.cpf.RegraObito\",\n                            \"nome\": \"Registro de óbito na Receita Federal\",\n                            \"descricao\": \"Não deve constar registro de óbito na Receita Federal\",\n                            \"resultado\": \"VALID\"\n                        },\n                        {\n                            \"regra\": \"idwall.matrix.regras.cpf.RegraSituacaoReceitaFederal\",\n                            \"nome\": \"Situação Cadastral Regular\",\n                            \"descricao\": \"Situação cadastral do CPF deve ser REGULAR\",\n                            \"resultado\": \"VALID\"\n                        }\n                    ]\n                }\n            },\n            {\n                \"stageId\": \"stage-uuid\",\n                \"status\": \"FINISHED\",\n                \"issuer\": \"issuer\",\n                \"type\": \"WEBHOOK\",\n                \"params\": {\n                    \"urls\": [\n                        \"http://reprovado.com\"\n                    ]\n                },\n                \"conditions\": [],\n                \"updatedAt\": \"2022-04-08T20:33:20.783Z\"\n            }\n        ],\n        \"status\": \"FINISHED\",\n        \"input\": {\n            \"profileRef\": \"profile-reference-id\",\n            \"flowId\": \"flow-id\",\n            \"triggerType\": \"MANUAL\"\n        },\n        \"triggerType\": \"MANUAL\",\n        \"nextStage\": \"next-stage-id\",\n        \"profileRef\": \"profile-reference-id\",\n        \"flowName\": \"flow name\",\n        \"flowId\": \"flow-uuid\",\n        \"updatedAt\": \"2022-04-08T20:33:20.790Z\",\n        \"createdBy\": {\n            \"company\": {\n                \"id\": \"000\",\n                \"name\": \"company name\",\n                \"slug\": \"company_slug\"\n            },\n            \"user\": {\n                \"id\": \"00\",\n                \"email\": \"jonh-doe@email.co\",\n                \"name\": \"john doe\"\n            }\n        }\n    }\n}"
+						},
+						{
+							"name": "Not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "AUTHORIZATION_TOKEN"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile/:ref",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile",
+										":ref"
+									],
+									"variable": [
+										{
+											"key": "ref",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 20:33:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "3"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Profile not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Enriched information (ref)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/profile-enrichment/by-profile-ref/:ref",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"profile-enrichment",
+								"by-profile-ref",
+								":ref"
+							],
+							"variable": [
+								{
+									"key": "ref",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enriched information (id)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/profile-enrichment/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"profile-enrichment",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Images",
+			"item": [
+				{
+					"name": "Get signed URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code === 200){",
+									"    const {data} = pm.response.json();",
+									"    const { uploadUri, tempUri } = data;",
+									"    pm.globals.set(\"uploadUri\", uploadUri);",
+									"    pm.globals.set(\"tempUri\", tempUri);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/uploadUrl?contentType=image/jpeg",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"uploadUrl"
+							],
+							"query": [
+								{
+									"key": "contentType",
+									"value": "image/jpeg"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get signed URL",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/uploadUrl?contentType=image/jpeg",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"uploadUrl"
+									],
+									"query": [
+										{
+											"key": "contentType",
+											"value": "image/jpeg"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Image Upload",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{uploadUri}}",
+							"host": [
+								"{{uploadUri}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Image Upload",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "file",
+									"file": {
+										"src": "/home/gabriela.fonseca/Imagens/women.jpeg"
+									}
+								},
+								"url": {
+									"raw": "{{uploadUri}}",
+									"host": [
+										"{{uploadUri}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Download image",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/files/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"files",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Flows",
+			"item": [
+				{
+					"name": "Flow",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text",
+								"description": "Autenticação v2 ( Backoffice UUID Token )"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/flow/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"flow",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{flow-id}}"
+								}
+							]
+						},
+						"description": "## Headers\n- `Authorization` **[required]**: Token recebido na request **Autenticação > Obtendo um token de acesso**.\n- `Content-Type`: Deve ser sempre `application/json`.\n\n## Resposta\n- HTTP **200 OK**\n- Body de resposta em JSON."
+					},
+					"response": [
+						{
+							"name": "Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "AUTHORIZATION_TOKEN",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/flow/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"flow",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 19:36:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "4"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"flow-uuid\",\n    \"archived\": false,\n    \"trigger\": {\n        \"type\": \"MANUAL\",\n        \"filters\": [],\n        \"segmentIds\": []\n    },\n    \"description\": \"\",\n    \"status\": 0,\n    \"name\": \"flow name\",\n    \"stages\": [\n        {\n            \"id\": \"stage-uuid\",\n            \"isFirst\": true,\n            \"nextStageWhenIsInvalid\": \"next-stage-id\",\n            \"type\": \"BGC\",\n            \"params\": {\n                \"setting\": \"onboarding\",\n                \"inputsMapping\": [\n                    {\n                        \"here\": [\n                            \"cpfNumber\",\n                            \"identity.documents.cnh.numeroCpf\",\n                            \"identity.documents.rg.numeroCpf\",\n                            \"personal.cpfNumber\"\n                        ],\n                        \"there\": {\n                            \"input\": \"person.document.cpf.numero\",\n                            \"inputLegacy\": \"cpf_numero\",\n                            \"options\": [\n                                \"person.document.cpf.numero\",\n                                \"PERSON_CPF_NUMBER\",\n                                \"cpf_numero\"\n                            ]\n                        }\n                    },\n                    {\n                        \"here\": [\n                            \"name\",\n                            \"identity.documents.cnh.nome\",\n                            \"identity.documents.rg.nome\",\n                            \"personal.name\"\n                        ],\n                        \"there\": {\n                            \"input\": \"person.name\",\n                            \"inputLegacy\": \"cpf_nome\",\n                            \"options\": [\n                                \"person.name\",\n                                \"PERSON_NAME\",\n                                \"cpf_nome\"\n                            ]\n                        }\n                    }\n                ]\n            },\n            \"conditions\": [\n                \"cpfNumber\",\n                \"name\"\n            ]\n        },\n        {\n            \"id\": \"6c949adc-ce1b-4e45-bf77-6e4dcee10629\",\n            \"isFirst\": false,\n            \"type\": \"ADD_SEGMENT\",\n            \"params\": {\n                \"segments\": [\n                    \"segment-id\"\n                ]\n            },\n            \"conditions\": []\n        }\n    ],\n    \"createdAt\": \"2022-06-14T13:47:52.757Z\",\n    \"updatedAt\": \"2022-07-05T18:41:44.456Z\",\n    \"createdBy\": {\n        \"company\": {\n            \"id\": \"000\",\n            \"name\": \"company name\",\n            \"slug\": \"company_slug\"\n        },\n        \"user\": {\n            \"id\": \"00\",\n            \"email\": \"jonh-doe@email.co\",\n            \"name\": \"john doe\"\n        }\n    },\n    \"quantities\": {\n        \"CANCELLED\": 1,\n        \"WAITING_MANUAL_ACTION\": 106\n    }\n}"
+						},
+						{
+							"name": "Not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "AUTHORIZATION_TOKEN"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/flow/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"flow",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 20:33:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "3"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Flow not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List flows",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text",
+								"description": "Autenticação v2 ( Backoffice UUID Token )"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/flow",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"flow"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "{{authorization}}",
+									"description": "Autenticação v2 ( Authorization Web )",
+									"disabled": true
+								},
+								{
+									"key": "Authorization",
+									"value": "{{access_token}}",
+									"description": "Autenticação API Idwall",
+									"disabled": true
+								},
+								{
+									"key": "idw-issuer",
+									"value": "{{idw-issuer}}",
+									"description": "Autenticação v3 ( Authorization Web )",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "b65a7ed3-2488-464f-99ee-7f8ff02f3567",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "name,asc",
+									"disabled": true
+								}
+							]
+						},
+						"description": "## Headers\n- `Authorization` **[required]**: Token recebido na request **Autenticação > Obtendo um token de acesso**.\n- `Content-Type`: Deve ser sempre `application/json`.\n\n## Params\n\n- `q`:  Parâmetro de busca por nome do fluxo. \n- `limit`: Quantidade de itens por página.\n- `page`: Página atual.\n\n## Resposta\n- HTTP **200 OK**\n- Body de resposta em JSON."
+					},
+					"response": [
+						{
+							"name": "Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "AUTHORIZATION_TOKEN",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/flow",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"flow"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 19:36:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "4"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"flow-uuid\",\n            \"stages\": [\n                {\n                    \"id\": \"stage-uuid\",\n                    \"isFirst\": true,\n                    \"nextStage\": \"notificationSuccess\",\n                    \"nextStageWhenFail\": \"notificationError\",\n                    \"type\": \"BGC\",\n                    \"params\": {\n                        \"setting\": \"idhub-onboarding-passageiro\",\n                        \"inputs\": [\n                            {\n                                \"to\": \"person.name\",\n                                \"from\": \"personal.name\"\n                            },\n                            {\n                                \"to\": \"person.document.cpf.numero\",\n                                \"from\": \"keys.cpfNumber\"\n                            },\n                            {\n                                \"to\": \"person.document.rg.numero\",\n                                \"from\": \"identity.documents.rg.numeroRg\"\n                            },\n                            {\n                                \"to\": \"person.birthDate\",\n                                \"from\": \"personal.birthDate\"\n                            }\n                        ]\n                    },\n                    \"conditions\": [\n                        \"personal.name\",\n                        \"keys.cpfNumber\",\n                        \"identity.documents.rg.numeroRg\",\n                        \"personal.birthDate\"\n                    ]\n                },\n                {\n                    \"id\": \"notificationSuccess\",\n                    \"isFirst\": false,\n                    \"nextStage\": null,\n                    \"nextStageWhenFail\": null,\n                    \"type\": \"EMAIL\",\n                    \"params\": {\n                        \"to\": \"john@idwall.co\"\n                    },\n                    \"conditions\": []\n                },\n                {\n                    \"id\": \"notificationError\",\n                    \"isFirst\": false,\n                    \"nextStage\": null,\n                    \"nextStageWhenFail\": null,\n                    \"type\": \"EMAIL\",\n                    \"params\": {\n                        \"to\": \"john@idwall.co\"\n                    },\n                    \"conditions\": []\n                }\n            ],\n            \"trigger\": {\n                \"type\": \"INPUT\",\n                \"config\": null\n            },\n            \"description\": \"Onboarding de motoristas\",\n            \"name\": \"Onboarding\",\n            \"createdAt\": \"2020-07-06T18:14:30.894Z\",\n            \"updatedAt\": \"2020-07-06T18:14:30.894Z\",\n            \"createdBy\": {\n                \"company\": {\n                    \"name\": \"Company name\",\n                    \"slug\": \"company-slug\",\n                    \"id\": \"company-uuid\"\n                },\n                \"user\": {\n                    \"name\": \"John\",\n                    \"email\": \"john@idwall.com\",\n                    \"id\": \"user-uuid\"\n                }\n            }\n        }\n    ],\n    \"pagination\": {\n        \"limit\": 10,\n        \"page\": 1,\n        \"total\": 1,\n        \"pages\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "List flows with conditions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text",
+								"description": "Autenticação v2 ( Backoffice UUID Token )"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/flow/with-conditions?id={{flow-id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"flow",
+								"with-conditions"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{flow-id}}"
+								}
+							]
+						},
+						"description": "## Headers\n- `Authorization` **[required]**: Token recebido na request **Autenticação > Obtendo um token de acesso**.\n- `Content-Type`: Deve ser sempre `application/json`.\n\n## Params\n\n- `q`:  Parâmetro de busca por nome do fluxo. \n- `limit`: Quantidade de itens por página.\n- `page`: Página atual.\n\n## Resposta\n- HTTP **200 OK**\n- Body de resposta em JSON."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Segments",
+			"item": [
+				{
+					"name": "Create segment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code === 201){",
+									"var jsonData = pm.response.json();",
+									"    var sampleFlowId = jsonData.data.created",
+									"    pm.globals.set(\"segment-id\", sampleFlowId);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text",
+								"description": "Autenticação v2 ( Backoffice UUID Token )"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"segment name\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/segment",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"segment"
+							]
+						},
+						"description": "## Headers\n- `Authorization` **[obrigatório]**: Token recebido na request **Autenticação > Obtendo um token de acesso**.\n- `Content-Type`: Deve ser sempre `application/json`.\n\n## Body\n\n- `name` **[obrigatório]**\n- `description` **[obrigatório]** \n\n\n## Resposta\n- HTTP **201 OK**\n- Body de resposta em JSON."
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "AUTHORIZATION_TOKEN",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/flow",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"flow"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 19:36:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "4"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"created\": \"408c51f3-dd7a-4329-9b95-06dfd3736ee8\"\n    }\n}"
+						},
+						{
+							"name": "Validation error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "AUTHORIZATION_TOKEN"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/flow",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"flow"
+									]
+								}
+							},
+							"status": "Not Acceptable",
+							"code": 406,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"Segment validation error\",\n        \"errors\": [\n            \"name is a required field\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Segment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text",
+								"description": "Autenticação v2 ( Backoffice UUID Token )"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/segment/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"segment",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "## Headers\n- `Authorization` **[required]**: Token recebido na request **Autenticação > Obtendo um token de acesso**.\n- `Content-Type`: Deve ser sempre `application/json`.\n\n## Params\n\n- `q`:  Parâmetro de busca por nome do fluxo. \n- `limit`: Quantidade de itens por página.\n- `page`: Página atual.\n\n## Resposta\n- HTTP **200 OK**\n- Body de resposta em JSON."
+					},
+					"response": [
+						{
+							"name": "Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "AUTHORIZATION_TOKEN",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/segment/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"segment",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 19:36:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "4"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"segment-uuid\",\n        \"name\": \"segment name\",\n        \"description\": \"segment description\",\n        \"createdAt\": \"2022-04-20T18:02:50.279Z\",\n        \"updatedAt\": \"2022-04-20T18:02:50.279Z\",\n        \"createdBy\": {\n            \"company\": {\n                \"id\": \"000\",\n                \"name\": \"company name\",\n                \"slug\": \"company_slug\"\n            },\n            \"user\": {\n                \"id\": \"00\",\n                \"email\": \"jonh-doe@email.co\",\n                \"name\": \"john doe\"\n            }\n        }\n    }\n}"
+						},
+						{
+							"name": "Not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "AUTHORIZATION_TOKEN"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/profile/:ref",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"profile",
+										":ref"
+									],
+									"variable": [
+										{
+											"key": "ref",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 20:33:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "3"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Segment not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List segments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text",
+								"description": "Autenticação v2 ( Backoffice UUID Token )"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/segment",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"segment"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "{{segment-id}}",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "name,asc",
+									"disabled": true
+								}
+							]
+						},
+						"description": "## Headers\n- `Authorization` **[required]**: Token recebido na request **Autenticação > Obtendo um token de acesso**.\n- `Content-Type`: Deve ser sempre `application/json`.\n\n## Params\n\n- `q`:  Parâmetro de busca por nome do fluxo. \n- `limit`: Quantidade de itens por página.\n- `page`: Página atual.\n\n## Resposta\n- HTTP **200 OK**\n- Body de resposta em JSON."
+					},
+					"response": [
+						{
+							"name": "Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "AUTHORIZATION_TOKEN",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/flow",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"flow"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 19:36:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "4"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n        \"id\": \"segment-uuid\",\n        \"name\": \"segment name\",\n        \"description\": \"segment description\",\n        \"createdAt\": \"2022-04-20T18:02:50.279Z\",\n        \"updatedAt\": \"2022-04-20T18:02:50.279Z\",\n        \"createdBy\": {\n            \"company\": {\n                \"id\": \"000\",\n                \"name\": \"company name\",\n                \"slug\": \"company_slug\"\n            },\n            \"user\": {\n                \"id\": \"00\",\n                \"email\": \"jonh-doe@email.co\",\n                \"name\": \"john doe\"\n            }\n        }\n    }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Review pendencies",
+			"item": [
+				{
+					"name": "Retry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "idw-issuer",
+								"value": "{{uuid}}",
+								"description": "Autenticação v2 ( Backoffice UUID Token )",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Legacy",
+								"value": "on",
+								"description": "Autenticação v2 ( Authorization Web )",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"description": "Autenticação v2 ( Authorization Web )",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": "Autenticação API Idwall",
+								"type": "text"
+							},
+							{
+								"key": "idw-issuer",
+								"value": "{{idw-issuer}}",
+								"description": "Autenticação v3 ( Authorization Web )",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sdkToken\": \"id\",\n    \"personal\": {\n        \"name\": \"Name\",\n        \"birthDate\": \"BirthDate\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/review/v1/:ref/:pendencySourceId/:action",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"review",
+								"v1",
+								":ref",
+								":pendencySourceId",
+								":action"
+							],
+							"variable": [
+								{
+									"key": "ref",
+									"value": null
+								},
+								{
+									"key": "pendencySourceId",
+									"value": "",
+									"description": "ID da origem da pendência (profileFlowId ou profileExtractionId)"
+								},
+								{
+									"key": "action",
+									"value": "RETRY",
+									"description": "Pode ser enviado o valor RETRY"
+								}
+							]
+						},
+						"description": "## Headers\n- `Authorization` **[required]**: Token recebido na request **Autenticação > Obtendo um token de acesso**.\n- `Content-Type`: Deve ser sempre `application/json`.\n\n## Resposta\n- HTTP **200 OK**\n- Body de resposta em JSON."
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "AUTHORIZATION_TOKEN",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/flow/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"flow",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 06 Jul 2020 19:36:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Kong-Response-Latency",
+									"value": "4"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15724800; includeSubDomains"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"modified\": \"408c51f3-dd7a-4329-9b95-06dfd3736ee8\"\n    }\n}"
+						},
+						{
+							"name": "Validation error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "AUTHORIZATION_TOKEN"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/{{prefix}}/flow/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"{{prefix}}",
+										"flow",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Not Acceptable",
+							"code": 406,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"Flow validation error\",\n        \"errors\": [\n            \"name is a required field\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Keep CPF provided by user (Data Match)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ref\": \"profile-ref\",\n    \"note\": \"optional observation\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/review/dataMatch/:dataMatchId/ignore",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"review",
+								"dataMatch",
+								":dataMatchId",
+								"ignore"
+							],
+							"variable": [
+								{
+									"key": "dataMatchId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Keep CPF provided by OCR (Data Match)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ref\": \"profile-ref\",\n    \"note\": \"optional observation\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/review/dataMatch/:dataMatchId/accept",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"review",
+								"dataMatch",
+								":dataMatchId",
+								"accept"
+							],
+							"variable": [
+								{
+									"key": "dataMatchId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inactivate profile (Data Match)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ref\": \"profile-ref\",\n    \"note\": \"optional observation\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/review/dataMatch/:dataMatchId/ignore-and-inactivate-profile",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"review",
+								"dataMatch",
+								":dataMatchId",
+								"ignore-and-inactivate-profile"
+							],
+							"variable": [
+								{
+									"key": "dataMatchId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "https://api-v3.idwall.co/",
+			"type": "default"
+		},
+		{
+			"key": "prefix",
+			"value": "maestro",
+			"type": "default"
+		},
+		{
+			"key": "token",
+			"value": "SEU-TOKEN-API",
+			"type": "default"
+		}
+	]
+}
